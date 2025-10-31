@@ -1,0 +1,81 @@
+{
+  "languages": [
+    {
+      "id": "english",
+      "name": "English",
+      "levels": [
+        {
+          "id": "level1",
+          "name": "Level 1",
+          "lessons": [
+            {
+              "id": "lesson1",
+              "title": "Lesson 1: Introduction",
+              "storagePath": "audio-lessons/test.wav"
+            },
+            {
+              "id": "lesson2",
+              "title": "Lesson 2: Basics",
+              "storagePath": "audio-lessons/test.wav"
+            }
+          ]
+        },
+        {
+          "id": "level2",
+          "name": "Level 2",
+          "lessons": [
+            {
+              "id": "lesson1",
+              "title": "Lesson 1: Intermediate",
+              "storagePath": "audio-lessons/test.wav"
+            },
+            {
+              "id": "lesson2",
+              "title": "Lesson 2: Advanced Basics",
+              "storagePath": "audio-lessons/test.wav"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spanish",
+      "name": "Spanish",
+      "levels": [
+        {
+          "id": "level1",
+          "name": "Nivel 1",
+          "lessons": [
+            {
+              "id": "lesson1",
+              "title": "Lección 1: Introducción",
+              "storagePath": "audio-lessons/test.wav"
+            },
+            {
+              "id": "lesson2",
+              "title": "Lección 2: Básico",
+              "storagePath": "audio-lessons/test.wav"
+            }
+          ]
+        },
+        {
+          "id": "level2",
+          "name": "Nivel 2",
+          "lessons": [
+            {
+              "id": "lesson1",
+              "title": "Lección 1: Intermedio",
+              "storagePath": "audio-lessons/test.wav"
+            },
+            {
+              "id": "lesson2",
+              "title": "Lección 2: Avanzado Básico",
+              "storagePath": "audio-lessons/test.wav"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
