@@ -6,16 +6,23 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
 import { AVPlaybackStatusSuccess } from 'expo-av';
+import { RootStackParamList } from '../../App';
 import { AudioPlayer, formatTime, setupAudioMode } from '../services/audio';
 import { getAudioDownloadUrl } from '../services/firebase';
-import { Lesson } from '../types';
+
+type PlayerScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Player'>;
+type PlayerScreenRouteProp = RouteProp<RootStackParamList, 'Player'>;
 
 interface PlayerScreenProps {
-  lesson: Lesson;
+  navigation: PlayerScreenNavigationProp;
+  route: PlayerScreenRouteProp;
 }
 
-export default function PlayerScreen({ lesson }: PlayerScreenProps) {
+export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
+  const { lesson } = route.params;
   const playerRef = useRef(new AudioPlayer());
   
   // State
@@ -123,12 +130,26 @@ export default function PlayerScreen({ lesson }: PlayerScreenProps) {
   // Calculate progress percentage
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
+  const handleBackPress = () => {
+    // Cleanup audio before leaving
+    playerRef.current.cleanup();
+    navigation.goBack();
+  };
+
   // Main player view
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.title}>{lesson.title}</Text>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={handleBackPress}
+          activeOpacity={0.7}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        >
+          <Text style={styles.backButtonText}>‹ Back</Text>
+        </TouchableOpacity>
+        <Text style={styles.title} pointerEvents="none">{lesson.title}</Text>
       </View>
 
       {/* Player Controls */}
@@ -207,6 +228,22 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
     alignItems: 'center',
+    position: 'relative',
+  },
+  backButton: {
+    position: 'absolute',
+    left: 8,
+    top: 44,
+    minWidth: 44,
+    minHeight: 44,
+    justifyContent: 'center',
+    paddingHorizontal: 12,
+    zIndex: 10,
+  },
+  backButtonText: {
+    fontSize: 18,
+    color: '#007AFF',
+    fontWeight: '600',
   },
   title: {
     fontSize: 24,

@@ -1,19 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DirectoryScreen from './src/screens/DirectoryScreen';
 import PlayerScreen from './src/screens/PlayerScreen';
 import { Lesson } from './src/types';
 
-// PHASE 2 TESTING: Hardcoded lesson for testing
-const testLesson: Lesson = {
-  id: 'lesson1',
-  title: 'Test Lesson - Phase 2',
-  storagePath: 'audio-lessons/test.wav',
+// Define navigation types
+export type RootStackParamList = {
+  Directory: undefined;
+  Player: {
+    lesson: Lesson;
+  };
 };
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <>
-      <PlayerScreen lesson={testLesson} />
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Directory"
+        screenOptions={{
+          headerShown: false, // We're using custom headers
+        }}
+      >
+        <Stack.Screen name="Directory" component={DirectoryScreen} />
+        <Stack.Screen name="Player" component={PlayerScreen} />
+      </Stack.Navigator>
       <StatusBar style="auto" />
-    </>
+    </NavigationContainer>
   );
 }

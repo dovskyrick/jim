@@ -7,12 +7,20 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 import { fetchManifest } from '../services/firebase';
 import { Manifest, Language, Level, Lesson } from '../types';
 
+type DirectoryScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Directory'>;
+
+interface DirectoryScreenProps {
+  navigation: DirectoryScreenNavigationProp;
+}
+
 type ViewMode = 'languages' | 'levels' | 'lessons';
 
-export default function DirectoryScreen() {
+export default function DirectoryScreen({ navigation }: DirectoryScreenProps) {
   // Data state
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [loading, setLoading] = useState(true);
@@ -55,9 +63,8 @@ export default function DirectoryScreen() {
   };
 
   const handleLessonPress = (lesson: Lesson) => {
-    // TODO: Navigate to player in Phase 3
-    console.log('Lesson selected:', lesson.title);
-    alert(`Lesson selected: ${lesson.title}\n\nPlayer will be implemented in Phase 2!`);
+    console.log('🎵 Navigating to player for:', lesson.title);
+    navigation.navigate('Player', { lesson });
   };
 
   const handleBackPress = () => {
