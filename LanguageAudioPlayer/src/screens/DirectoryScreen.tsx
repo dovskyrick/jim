@@ -153,16 +153,17 @@ export default function DirectoryScreen() {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
+        <Text style={styles.title} pointerEvents="none">{getTitle()}</Text>
         {viewMode !== 'languages' && (
           <TouchableOpacity
             style={styles.backButton}
             onPress={handleBackPress}
             activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
             <Text style={styles.backButtonText}>‹ Back</Text>
           </TouchableOpacity>
         )}
-        <Text style={styles.title}>{getTitle()}</Text>
       </View>
 
       {/* List */}
@@ -208,10 +209,13 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    left: 16,
-    top: 50,
-    paddingVertical: 8,
-    paddingRight: 16,
+    left: 8,
+    top: 44,
+    minWidth: 44,
+    minHeight: 44,
+    justifyContent: 'center',
+    paddingHorizontal: 12,
+    zIndex: 10,
   },
   backButtonText: {
     fontSize: 18,
