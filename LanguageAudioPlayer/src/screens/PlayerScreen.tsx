@@ -141,6 +141,7 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
+        <Text style={styles.title}>{lesson.title}</Text>
         <TouchableOpacity
           style={styles.backButton}
           onPress={handleBackPress}
@@ -149,7 +150,6 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
         >
           <Text style={styles.backButtonText}>‹ Back</Text>
         </TouchableOpacity>
-        <Text style={styles.title} pointerEvents="none">{lesson.title}</Text>
       </View>
 
       {/* Player Controls */}
@@ -223,33 +223,30 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#fff',
     paddingTop: 50,
-    paddingBottom: 20,
+    paddingBottom: 16,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
-    alignItems: 'center',
-    position: 'relative',
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#000',
+    marginBottom: 12,
   },
   backButton: {
-    position: 'absolute',
-    left: 8,
-    top: 44,
+    alignSelf: 'flex-start',
     minWidth: 44,
     minHeight: 44,
     justifyContent: 'center',
     paddingHorizontal: 12,
-    zIndex: 10,
+    marginLeft: -4,
   },
   backButtonText: {
     fontSize: 18,
     color: '#007AFF',
     fontWeight: '600',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#000',
   },
   playerContainer: {
     flex: 1,
