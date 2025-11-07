@@ -105,6 +105,22 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
     }
   };
 
+  const handleSkipForward = async () => {
+    try {
+      await playerRef.current.skipForward(15000); // 15 seconds
+    } catch (err) {
+      console.error('❌ Skip forward error:', err);
+    }
+  };
+
+  const handleSkipBackward = async () => {
+    try {
+      await playerRef.current.skipBackward(15000); // 15 seconds
+    } catch (err) {
+      console.error('❌ Skip backward error:', err);
+    }
+  };
+
   // Loading state
   if (loading) {
     return (
@@ -167,16 +183,39 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
           <Text style={styles.timeText}>{formatTime(duration)}</Text>
         </View>
 
-        {/* Play/Pause Button */}
-        <TouchableOpacity
-          style={styles.playButton}
-          onPress={handlePlayPause}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.playButtonText}>
-            {isPlaying ? '⏸' : '▶'}
-          </Text>
-        </TouchableOpacity>
+        {/* Control Buttons Row */}
+        <View style={styles.controlsRow}>
+          {/* Skip Backward Button */}
+          <TouchableOpacity
+            style={styles.skipButton}
+            onPress={handleSkipBackward}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.skipIcon}>↺</Text>
+            <Text style={styles.skipLabel}>-15s</Text>
+          </TouchableOpacity>
+
+          {/* Play/Pause Button */}
+          <TouchableOpacity
+            style={styles.playButton}
+            onPress={handlePlayPause}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.playButtonText}>
+              {isPlaying ? '⏸' : '▶'}
+            </Text>
+          </TouchableOpacity>
+
+          {/* Skip Forward Button */}
+          <TouchableOpacity
+            style={styles.skipButton}
+            onPress={handleSkipForward}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.skipIcon}>↻</Text>
+            <Text style={styles.skipLabel}>+15s</Text>
+          </TouchableOpacity>
+        </View>
 
         {/* Restart Button */}
         <TouchableOpacity
@@ -281,6 +320,33 @@ const styles = StyleSheet.create({
     color: '#666',
     fontWeight: '500',
   },
+  controlsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 30,
+    marginBottom: 30,
+  },
+  skipButton: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: '#E3F2FD',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#007AFF',
+  },
+  skipIcon: {
+    fontSize: 28,
+    color: '#007AFF',
+  },
+  skipLabel: {
+    fontSize: 12,
+    color: '#007AFF',
+    fontWeight: '600',
+    marginTop: 2,
+  },
   playButton: {
     width: 100,
     height: 100,
@@ -288,7 +354,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#007AFF',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 30,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,

@@ -118,6 +118,67 @@ export class AudioPlayer {
   }
 
   /**
+   * Skip forward by a number of milliseconds (preserves play/pause state)
+   */
+  async skipForward(milliseconds: number): Promise<void> {
+    if (!this.sound) {
+      throw new Error('No audio loaded');
+    }
+
+    try {
+      // Get current status
+      const status = await this.sound.getStatusAsync();
+      
+      if (!status.isLoaded) {
+        throw new Error('Audio not loaded');
+      }
+
+      // Calculate new position (don't skip past the end)
+      const currentPosition = status.positionMillis;
+      const duration = status.durationMillis || 0;
+      const newPosition = Math.min(currentPosition + milliseconds, duration);
+
+      // Seek to new position (automatically preserves play/pause state!)
+      await this.sound.setPositionAsync(newPosition);
+      
+      console.log(`⏩ Skipped forward ${milliseconds}ms to ${newPosition}ms`);
+    } catch (error) {
+      console.error('❌ Failed to skip forward:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Skip backward by a number of milliseconds (preserves play/pause state)
+   */
+  async skipBackward(milliseconds: number): Promise<void> {
+    if (!this.sound) {
+      throw new Error('No audio loaded');
+    }
+
+    try {
+      // Get current status
+      const status = await this.sound.getStatusAsync();
+      
+      if (!status.isLoaded) {
+        throw new Error('Audio not loaded');
+      }
+
+      // Calculate new position (don't go below 0)
+      const currentPosition = status.positionMillis;
+      const newPosition = Math.max(currentPosition - milliseconds, 0);
+
+      // Seek to new position (automatically preserves play/pause state!)
+      await this.sound.setPositionAsync(newPosition);
+      
+      console.log(`⏪ Skipped backward ${milliseconds}ms to ${newPosition}ms`);
+    } catch (error) {
+      console.error('❌ Failed to skip backward:', error);
+      throw error;
+    }
+  }
+
+  /**
    * Clean up and unload sound
    */
   async cleanup(): Promise<void> {
