@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import Slider from '@react-native-community/slider';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { AVPlaybackStatusSuccess } from 'expo-av';
@@ -31,6 +32,8 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isSliding, setIsSliding] = useState(false);
+  const [sliderPosition, setSliderPosition] = useState(0);
 
   // Setup and load audio on mount
   useEffect(() => {
@@ -75,6 +78,14 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
     setCurrentTime(status.positionMillis);
     setDuration(status.durationMillis || 0);
 
+    // Only update slider if user isn't dragging
+    if (!isSliding) {
+      const progress = status.durationMillis > 0 
+        ? (status.positionMillis / status.durationMillis) * 100 
+        : 0;
+      setSliderPosition(progress);
+    }
+
     // Check if finished
     if (status.didJustFinish) {
       console.log('✅ Playback finished');
@@ -118,6 +129,43 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
       await playerRef.current.skipBackward(15000); // 15 seconds
     } catch (err) {
       console.error('❌ Skip backward error:', err);
+    }
+  };
+
+  const handleSlidingStart = () => {
+    console.log('👆 User started dragging slider');
+    setIsSliding(true);
+  };
+
+  const handleValueChange = (value: number) => {
+    // Update visual position immediately
+    setSliderPosition(value);
+    
+    // Update time display for preview
+    const previewTime = (value / 100) * duration;
+    setCurrentTime(previewTime);
+  };
+
+  const handleSlidingComplete = async (value: number) => {
+    console.log('✅ User released slider at:', value);
+    
+    if (!duration || duration === 0) {
+      console.warn('⚠️ Audio not ready yet');
+      setIsSliding(false);
+      return;
+    }
+
+    // Convert percentage to milliseconds
+    const positionMillis = (value / 100) * duration;
+    
+    try {
+      // Seek to the new position
+      await playerRef.current.seekTo(positionMillis);
+    } catch (err) {
+      console.error('❌ Seek error:', err);
+    } finally {
+      // Re-enable normal updates
+      setIsSliding(false);
     }
   };
 
@@ -170,11 +218,20 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
 
       {/* Player Controls */}
       <View style={styles.playerContainer}>
-        {/* Progress Bar */}
-        <View style={styles.progressContainer}>
-          <View style={styles.progressBar}>
-            <View style={[styles.progressFill, { width: `${progress}%` }]} />
-          </View>
+        {/* Seek Slider */}
+        <View style={styles.sliderContainer}>
+          <Slider
+            style={styles.slider}
+            minimumValue={0}
+            maximumValue={100}
+            value={sliderPosition}
+            onSlidingStart={handleSlidingStart}
+            onValueChange={handleValueChange}
+            onSlidingComplete={handleSlidingComplete}
+            minimumTrackTintColor="#007AFF"
+            maximumTrackTintColor="#E0E0E0"
+            thumbTintColor="#007AFF"
+          />
         </View>
 
         {/* Time Display */}
@@ -187,12 +244,13 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
         <View style={styles.controlsRow}>
           {/* Skip Backward Button */}
           <TouchableOpacity
-            style={styles.skipButton}
+            style={[styles.skipButton, isSliding && styles.buttonDisabled]}
             onPress={handleSkipBackward}
+            disabled={isSliding}
             activeOpacity={0.7}
           >
-            <Text style={styles.skipIcon}>↺</Text>
-            <Text style={styles.skipLabel}>-15s</Text>
+            <Text style={[styles.skipIcon, isSliding && styles.iconDisabled]}>↺</Text>
+            <Text style={[styles.skipLabel, isSliding && styles.labelDisabled]}>-15s</Text>
           </TouchableOpacity>
 
           {/* Play/Pause Button */}
@@ -208,12 +266,13 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
 
           {/* Skip Forward Button */}
           <TouchableOpacity
-            style={styles.skipButton}
+            style={[styles.skipButton, isSliding && styles.buttonDisabled]}
             onPress={handleSkipForward}
+            disabled={isSliding}
             activeOpacity={0.7}
           >
-            <Text style={styles.skipIcon}>↻</Text>
-            <Text style={styles.skipLabel}>+15s</Text>
+            <Text style={[styles.skipIcon, isSliding && styles.iconDisabled]}>↻</Text>
+            <Text style={[styles.skipLabel, isSliding && styles.labelDisabled]}>+15s</Text>
           </TouchableOpacity>
         </View>
 
@@ -293,21 +352,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  progressContainer: {
+  sliderContainer: {
     width: '100%',
-    marginBottom: 20,
+    marginBottom: 10,
   },
-  progressBar: {
+  slider: {
     width: '100%',
-    height: 8,
-    backgroundColor: '#e0e0e0',
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#007AFF',
-    borderRadius: 4,
+    height: 40,
   },
   timeContainer: {
     width: '100%',
@@ -346,6 +397,15 @@ const styles = StyleSheet.create({
     color: '#007AFF',
     fontWeight: '600',
     marginTop: 2,
+  },
+  buttonDisabled: {
+    opacity: 0.4,
+  },
+  iconDisabled: {
+    color: '#999',
+  },
+  labelDisabled: {
+    color: '#999',
   },
   playButton: {
     width: 100,
