@@ -1,5 +1,6 @@
 import { OpenAITTSService } from './openai-tts.js';
 import { FirebaseStorageService } from './firebase-storage.js';
+import { AudioConcatenator } from './audio-concatenator.js';
 import { LessonContent, GeneratedAudio, Manifest } from './types.js';
 import { config } from './config.js';
 import { mkdirSync, existsSync, unlinkSync } from 'fs';
@@ -12,11 +13,13 @@ import { resolve, join } from 'path';
 export class LessonGenerator {
   private ttsService: OpenAITTSService;
   private storageService: FirebaseStorageService;
+  private concatenator: AudioConcatenator;
   private outputDir: string;
 
   constructor() {
     this.ttsService = new OpenAITTSService();
     this.storageService = new FirebaseStorageService();
+    this.concatenator = new AudioConcatenator();
     this.outputDir = resolve(config.storage.outputDir);
 
     // Create output directory if it doesn't exist
@@ -42,23 +45,62 @@ export class LessonGenerator {
     console.log(`   Level: ${content.levelName} (${content.levelId})`);
     console.log('='.repeat(60) + '\n');
 
-    // Step 1: Generate the audio file locally
+    // Step 1: Parse text into phrases (split by pause markers)
+    const phrases = this.concatenator.parsePhrases(content.text);
+    console.log(`📝 Parsed ${phrases.length} phrases from lesson text`);
+
+    // Step 2: Generate audio for each phrase
+    const phraseFiles: string[] = [];
+    
+    for (let i = 0; i < phrases.length; i++) {
+      const phrase = phrases[i];
+      console.log(`\n   [${i + 1}/${phrases.length}] Generating: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
+      
+      const phraseFileName = `phrase-${i}.${config.tts.format}`;
+      const phraseFilePath = join(this.outputDir, 'temp', phraseFileName);
+      
+      // Ensure temp directory exists
+      const tempDir = join(this.outputDir, 'temp');
+      if (!existsSync(tempDir)) {
+        mkdirSync(tempDir, { recursive: true });
+      }
+      
+      await this.ttsService.generateAndSave(
+        {
+          text: phrase,
+          voice: content.voice,
+        },
+        phraseFilePath
+      );
+      
+      phraseFiles.push(phraseFilePath);
+      
+      // Small delay between API calls to avoid rate limiting
+      if (i < phrases.length - 1) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+    }
+
+    // Step 3: Concatenate with 3-second silences
     const fileName = `${content.languageId}-${content.levelId}-${content.lessonId}.${config.tts.format}`;
     const localPath = join(this.outputDir, fileName);
-
-    await this.ttsService.generateAndSave(
-      {
-        text: content.text,
-        voice: content.voice,
-      },
-      localPath
+    
+    console.log(`\n🎼 Concatenating ${phraseFiles.length} phrases with 3s silences...`);
+    await this.concatenator.concatenateWithSilence(
+      phraseFiles,
+      localPath,
+      3,  // 3 seconds of silence
+      true  // Add silence at beginning and end
     );
 
-    // Step 2: Upload to Firebase Storage
+    // Step 4: Clean up temporary phrase files
+    this.concatenator.cleanupPhraseFiles(phraseFiles);
+
+    // Step 5: Upload to Firebase Storage
     const storagePath = `${config.storage.audioLessonsPath}/${fileName}`;
     const firebaseUrl = await this.storageService.uploadAudio(localPath, storagePath);
 
-    // Step 3: Clean up local file if requested
+    // Step 6: Clean up local file if requested
     if (!keepLocalFile) {
       try {
         unlinkSync(localPath);
@@ -116,7 +158,7 @@ export class LessonGenerator {
 
       // Small delay between API calls to avoid rate limiting
       if (i < contents.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 2000));
       }
     }
 
