@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync, renameSync } from 'fs';
 import { join, parse, dirname, basename } from 'path';
 import { LessonContent } from './types.js';
+import { config } from './config.js';
 
 /**
  * Parse YAML frontmatter from lesson file
@@ -22,9 +23,17 @@ interface ParsedLesson {
 }
 
 function parseLessonFile(filePath: string): ParsedLesson {
-  const content = readFileSync(filePath, 'utf-8');
+  const content = readFileSync(filePath, 'utf-8').trim();
   
-  // Check for YAML frontmatter
+  // If file is empty, return empty content
+  if (!content) {
+    return {
+      metadata: {},
+      content: '',
+    };
+  }
+  
+  // Check for YAML frontmatter (optional)
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
   const match = content.match(frontmatterRegex);
   
@@ -54,10 +63,10 @@ function parseLessonFile(filePath: string): ParsedLesson {
     };
   }
   
-  // No frontmatter, return plain content
+  // No frontmatter, return plain content (will use defaults from config)
   return {
     metadata: {},
-    content: content.trim(),
+    content: content,
   };
 }
 
@@ -165,7 +174,8 @@ export function toLessonContent(lessonFile: LessonFile): LessonContent {
     lessonId: lessonFile.lessonId,
     lessonTitle,
     text: lessonFile.parsedContent.content,
-    voice: lessonFile.parsedContent.metadata.voice,
+    // Use metadata voice if provided, otherwise use default from config
+    voice: lessonFile.parsedContent.metadata.voice || config.tts.defaultVoice,
   };
 }
 

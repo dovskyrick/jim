@@ -53,9 +53,10 @@ async function main() {
     
     console.log(`\n[${ i + 1}/${todoLessons.length}] Processing: ${lessonFile.language}/${lessonFile.level}/${lessonFile.lessonId}`);
     
-    // Check if content is just a template
-    if (lessonFile.parsedContent.content.includes('[Paste your lesson content here')) {
-      console.log('⚠️  Skipping: File contains template placeholder. Please add actual lesson content.');
+    // Check if file is empty or only whitespace
+    const trimmedContent = lessonFile.parsedContent.content.trim();
+    if (!trimmedContent || trimmedContent.length === 0) {
+      console.log('⚠️  Skipping: File is empty. Please add lesson content.');
       continue;
     }
 

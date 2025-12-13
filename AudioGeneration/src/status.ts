@@ -38,11 +38,12 @@ async function viewStatus() {
       console.log(`  ${level}:`);
       levelLessons.forEach(lesson => {
         const icon = lesson.status === 'DONE' ? '✅' : '📝';
-        const wordCount = lesson.parsedContent.content.split(/\s+/).length;
-        const hasContent = !lesson.parsedContent.content.includes('[Paste your lesson content here');
+        const trimmedContent = lesson.parsedContent.content.trim();
+        const hasContent = trimmedContent && trimmedContent.length > 0;
+        const wordCount = hasContent ? trimmedContent.split(/\s+/).filter(w => w.length > 0).length : 0;
         const status = hasContent 
           ? `${icon} ${lesson.status}` 
-          : '⚠️  TEMPLATE (needs content)';
+          : '⚠️  EMPTY (needs content)';
         
         console.log(`    ${lesson.lessonId}: ${status}${hasContent ? ` (~${wordCount} words)` : ''}`);
       });

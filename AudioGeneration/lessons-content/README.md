@@ -29,18 +29,32 @@ lessons-content/
 
 ## 📄 File Format
 
-Each lesson file can have optional metadata using YAML frontmatter:
+**All lesson files start completely empty!** Just paste your content directly.
+
+### Simple Format (Recommended):
+```
+Your lesson content goes here...
+Just paste directly from ChatGPT!
+```
+
+### Optional: Advanced Format with Custom Voice/Speed
+
+If you want to override the default voice or speed for a specific lesson, you can add YAML frontmatter:
 
 ```yaml
 ---
-voice: alloy
-speed: 1.0
+voice: shimmer
+speed: 1.2
 ---
 
 Your lesson content goes here...
 ```
 
-### Voice Options:
+**Note:** If you don't add frontmatter, the system uses defaults:
+- Voice: `alloy` (can be changed in `src/config.ts`)
+- Speed: `1.0` (can be changed in `src/config.ts`)
+
+### Voice Options (if using frontmatter):
 - `alloy` - Neutral, balanced (default)
 - `echo` - Male, clear
 - `fable` - British accent
@@ -48,16 +62,20 @@ Your lesson content goes here...
 - `nova` - Friendly female
 - `shimmer` - Soft female
 
-### Speed Options:
+### Speed Options (if using frontmatter):
 - `0.25` to `4.0` (default: `1.0`)
 
 ## ✍️ How to Add Content
 
-1. Create a new file following the naming pattern: `lesson1-TODO.txt`
-2. Add the YAML header (optional)
-3. Paste your lesson content from ChatGPT
+**Super Simple Workflow:**
+
+1. Open any `lessonX-TODO.txt` file (it's empty!)
+2. **Ctrl+A** (select all) - nothing to delete since it's empty
+3. **Ctrl+V** (paste your ChatGPT content)
 4. Save the file
-5. Run the generation script
+5. Run `npm run generate`
+
+That's it! No formatting needed, just pure text.
 
 ## 🤖 Prompt Engineering Tips
 
