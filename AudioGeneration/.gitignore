@@ -1,0 +1,31 @@
+# Environment variables
+.env
+
+# Firebase credentials
+firebase-service-account.json
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Generated audio files (temporary)
+output/
+*.mp3
+*.wav
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
