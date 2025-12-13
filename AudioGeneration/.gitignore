@@ -10,10 +10,9 @@ node_modules/
 # Build output
 dist/
 
-# Generated audio files (temporary)
+# Generated audio files
+lessons-audio/
 output/
-*.mp3
-*.wav
 
 # Logs
 *.log

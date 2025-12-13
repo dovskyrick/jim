@@ -2,8 +2,13 @@
 
 import { validateConfig } from './config.js';
 import { LessonGenerator } from './lesson-generator.js';
-import { exampleLessons, customLesson } from './examples.js';
-import { LessonContent } from './types.js';
+import { 
+  getTodoLessons, 
+  getAllLessons, 
+  toLessonContent, 
+  markLessonAsDone,
+  printLessonsSummary 
+} from './lesson-scanner.js';
 
 /**
  * Main entry point for the audio generation system
@@ -17,71 +22,79 @@ async function main() {
   // Validate configuration
   validateConfig();
 
+  // Scan for lessons
+  console.log('🔍 Scanning lessons-content directory...\n');
+  const allLessons = getAllLessons();
+  const todoLessons = getTodoLessons();
+  
+  printLessonsSummary(allLessons);
+
+  if (todoLessons.length === 0) {
+    console.log('✨ No TODO lessons found! All lessons are up to date.\n');
+    console.log('💡 To generate audio for a lesson:');
+    console.log('   1. Create a new file: lessons-content/{language}/{level}/lessonX-TODO.txt');
+    console.log('   2. Add your lesson content');
+    console.log('   3. Run this script again\n');
+    return;
+  }
+
+  console.log(`🚀 Found ${todoLessons.length} lesson(s) to generate:\n`);
+  todoLessons.forEach((lesson, i) => {
+    console.log(`   ${i + 1}. ${lesson.language}/${lesson.level}/${lesson.lessonId}`);
+  });
+  console.log('');
+
   // Create the lesson generator
   const generator = new LessonGenerator();
 
-  // ========================================
-  // CHOOSE YOUR GENERATION MODE:
-  // ========================================
+  // Process each TODO lesson
+  for (let i = 0; i < todoLessons.length; i++) {
+    const lessonFile = todoLessons[i];
+    
+    console.log(`\n[${ i + 1}/${todoLessons.length}] Processing: ${lessonFile.language}/${lessonFile.level}/${lessonFile.lessonId}`);
+    
+    // Check if content is just a template
+    if (lessonFile.parsedContent.content.includes('[Paste your lesson content here')) {
+      console.log('⚠️  Skipping: File contains template placeholder. Please add actual lesson content.');
+      continue;
+    }
 
-  // MODE 1: Generate a single lesson
-  console.log('📝 Mode: Single Lesson Generation\n');
-  
-  const singleLesson: LessonContent = {
-    languageId: 'english',
-    languageName: 'English',
-    levelId: 'level1',
-    levelName: 'Level 1',
-    lessonId: 'lesson1',
-    lessonTitle: 'Lesson 1: Introduction',
-    text: 'Hello! Welcome to your first English lesson. Today we will learn basic greetings. Good morning, good afternoon, and good evening are common ways to greet people throughout the day.',
-    voice: 'alloy',
-  };
+    try {
+      // Convert to LessonContent format
+      const lessonContent = toLessonContent(lessonFile);
+      
+      // Generate audio
+      const result = await generator.generateLesson(lessonContent, false);
+      
+      // Mark as done
+      markLessonAsDone(lessonFile);
+      
+      console.log(`✅ Success! Audio available at: ${result.storagePath}`);
+      
+    } catch (error) {
+      console.error(`❌ Failed to generate lesson:`, error);
+      console.log('   Skipping to next lesson...');
+    }
 
-  const result = await generator.generateLesson(singleLesson, false);
-  
-  console.log('\n📋 Result:');
-  console.log(`   Firebase URL: ${result.firebaseUrl}`);
-  console.log(`   Storage Path: ${result.storagePath}`);
+    // Small delay between API calls
+    if (i < todoLessons.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+  }
 
-  // ========================================
-  // MODE 2: Generate multiple lessons (uncomment to use)
-  // ========================================
+  console.log('\n' + '='.repeat(60));
+  console.log('✅ Batch generation complete!');
+  console.log('='.repeat(60) + '\n');
   
-  /*
-  console.log('📝 Mode: Batch Generation\n');
-  
-  const results = await generator.generateBatch(exampleLessons, false);
-  
-  // Show the storage paths for updating manifest.json
-  generator.generateManifestUpdate(results);
-  */
+  // Show final summary
+  const updatedLessons = getAllLessons();
+  printLessonsSummary(updatedLessons);
 
-  // ========================================
-  // MODE 3: Generate from your own lesson data (uncomment to use)
-  // ========================================
-  
-  /*
-  // Define your lessons here
-  const myLessons: LessonContent[] = [
-    {
-      languageId: 'french',
-      languageName: 'French',
-      levelId: 'level1',
-      levelName: 'Niveau 1',
-      lessonId: 'lesson1',
-      lessonTitle: 'Leçon 1: Introduction',
-      text: 'Bonjour! Bienvenue à votre première leçon de français...',
-      voice: 'shimmer',
-    },
-    // Add more lessons...
-  ];
-
-  const results = await generator.generateBatch(myLessons, false);
-  generator.generateManifestUpdate(results);
-  */
-
-  console.log('\n✅ All done!\n');
+  console.log('💡 Next steps:');
+  console.log('   1. Check lessons-audio/ folder for generated MP3 files');
+  console.log('   2. Verify audio quality');
+  console.log('   3. Update manifest.json with new storage paths');
+  console.log('   4. Upload manifest.json to Firebase Storage\n');
 }
 
 // Run the main function
