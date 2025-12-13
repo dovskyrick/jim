@@ -10,13 +10,13 @@
           "lessons": [
             {
               "id": "lesson1",
-              "title": "Lesson 1: Introduction",
-              "storagePath": "audio-lessons/test.wav"
+              "title": "Lesson 1",
+              "storagePath": "audio-lessons/english-level1-lesson1.mp3"
             },
             {
               "id": "lesson2",
-              "title": "Lesson 2: Basics",
-              "storagePath": "audio-lessons/test2.wav"
+              "title": "Lesson 2",
+              "storagePath": "audio-lessons/english-level1-lesson2.mp3"
             }
           ]
         },
@@ -26,51 +26,57 @@
           "lessons": [
             {
               "id": "lesson1",
-              "title": "Lesson 1: Intermediate",
-              "storagePath": "audio-lessons/test.wav"
+              "title": "Lesson 1",
+              "storagePath": "audio-lessons/english-level2-lesson1.mp3"
             },
             {
               "id": "lesson2",
-              "title": "Lesson 2: Advanced Basics",
-              "storagePath": "audio-lessons/test.wav"
+              "title": "Lesson 2",
+              "storagePath": "audio-lessons/english-level2-lesson2.mp3"
             }
           ]
         }
       ]
     },
     {
-      "id": "spanish",
-      "name": "Spanish",
+      "id": "french",
+      "name": "French",
       "levels": [
         {
           "id": "level1",
-          "name": "Nivel 1",
+          "name": "Level 1",
           "lessons": [
             {
               "id": "lesson1",
-              "title": "Lección 1: Introducción",
-              "storagePath": "audio-lessons/test.wav"
-            },
-            {
-              "id": "lesson2",
-              "title": "Lección 2: Básico",
-              "storagePath": "audio-lessons/test.wav"
+              "title": "Lesson 1",
+              "storagePath": "audio-lessons/french-level1-lesson1.mp3"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "greek",
+      "name": "Greek",
+      "levels": [
         {
-          "id": "level2",
-          "name": "Nivel 2",
+          "id": "level1",
+          "name": "Level 1",
           "lessons": [
             {
               "id": "lesson1",
-              "title": "Lección 1: Intermedio",
-              "storagePath": "audio-lessons/test.wav"
+              "title": "Lesson 1",
+              "storagePath": "audio-lessons/greek-level1-lesson1.mp3"
             },
             {
               "id": "lesson2",
-              "title": "Lección 2: Avanzado Básico",
-              "storagePath": "audio-lessons/test.wav"
+              "title": "Lesson 2",
+              "storagePath": "audio-lessons/greek-level1-lesson2.mp3"
+            },
+            {
+              "id": "lesson3",
+              "title": "Lesson 3",
+              "storagePath": "audio-lessons/greek-level1-lesson3.mp3"
             }
           ]
         }
@@ -78,4 +84,3 @@
     }
   ]
 }
-

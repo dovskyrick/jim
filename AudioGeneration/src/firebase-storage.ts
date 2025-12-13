@@ -37,18 +37,46 @@ export class FirebaseStorageService {
    * @returns Public URL to access the file
    */
   async uploadAudio(localFilePath: string, storageDestinationPath: string): Promise<string> {
+    return this.uploadFile(localFilePath, storageDestinationPath, 'audio/mpeg');
+  }
+
+  /**
+   * Upload any file to Firebase Storage
+   * @param localFilePath - Path to the local file
+   * @param storageDestinationPath - Where to store it in Firebase
+   * @param contentType - MIME type of the file (default: auto-detect)
+   * @returns Public URL to access the file
+   */
+  async uploadFile(
+    localFilePath: string, 
+    storageDestinationPath: string,
+    contentType?: string
+  ): Promise<string> {
     try {
       console.log(`☁️  Uploading to Firebase Storage: ${storageDestinationPath}`);
 
       const file = this.bucket.file(storageDestinationPath);
       
+      // Auto-detect content type if not provided
+      if (!contentType) {
+        if (storageDestinationPath.endsWith('.json')) {
+          contentType = 'application/json';
+        } else if (storageDestinationPath.endsWith('.mp3')) {
+          contentType = 'audio/mpeg';
+        } else if (storageDestinationPath.endsWith('.wav')) {
+          contentType = 'audio/wav';
+        } else {
+          contentType = 'application/octet-stream';
+        }
+      }
+      
       await this.bucket.upload(localFilePath, {
         destination: storageDestinationPath,
         metadata: {
-          contentType: 'audio/mpeg',
+          contentType,
           metadata: {
             uploadedAt: new Date().toISOString(),
-            generatedBy: 'OpenAI TTS',
+            generatedBy: 'Audio Generation System',
           },
         },
       });

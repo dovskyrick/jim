@@ -10,7 +10,8 @@
     "dev": "tsx src/index.ts",
     "generate": "tsx src/index.ts",
     "test": "tsx src/test.ts",
-    "status": "tsx src/status.ts"
+    "status": "tsx src/status.ts",
+    "update-manifest": "tsx src/update-manifest.ts"
   },
   "keywords": [
     "tts",

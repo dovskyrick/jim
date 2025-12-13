@@ -2,6 +2,7 @@
 
 import { validateConfig } from './config.js';
 import { LessonGenerator } from './lesson-generator.js';
+import { ManifestUpdater } from './manifest-updater.js';
 import { 
   getTodoLessons, 
   getAllLessons, 
@@ -91,11 +92,20 @@ async function main() {
   const updatedLessons = getAllLessons();
   printLessonsSummary(updatedLessons);
 
-  console.log('💡 Next steps:');
-  console.log('   1. Check lessons-audio/ folder for generated MP3 files');
-  console.log('   2. Verify audio quality');
-  console.log('   3. Update manifest.json with new storage paths');
-  console.log('   4. Upload manifest.json to Firebase Storage\n');
+  // Automatically update and upload manifest.json
+  if (todoLessons.length > 0) {
+    try {
+      console.log('📋 Updating manifest.json...\n');
+      const manifestUpdater = new ManifestUpdater();
+      await manifestUpdater.updateAndUpload();
+      console.log('✨ All done! Manifest updated and uploaded to Firebase.\n');
+    } catch (error) {
+      console.error('⚠️  Failed to update manifest:', error);
+      console.log('\n💡 You can manually update manifest.json if needed.\n');
+    }
+  } else {
+    console.log('💡 No lessons were generated, manifest not updated.\n');
+  }
 }
 
 // Run the main function
