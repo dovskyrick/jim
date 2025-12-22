@@ -48,19 +48,28 @@ export class AudioConcatenator {
    */
   enhancePhrases(phrases: string[]): string[] {
     return phrases.map((phrase, index) => {
+      const trimmed = phrase.trim();
+      
+      // Check if phrase already has the desired format: starts with " and ends with ..."
+      const alreadyFormatted = trimmed.startsWith('"') && trimmed.slice(-4) === '..."';
+      
+      if (alreadyFormatted) {
+        console.log(`   ✓ Already formatted: ${trimmed}`);
+        return phrase; // Return as-is
+      }
+      
       // Check if this is likely a short answer phrase
       // Criteria: 
       // - Under 30 characters
-      // - Not a question (doesn't end with ?)
       // - Less than 6 words
-      const wordCount = phrase.split(/\s+/).length;
-      const isQuestion = phrase.trim().endsWith('?');
-      const isShort = phrase.length < 30 && wordCount < 6;
+      // - Not the first phrase (first phrase is usually intro/prompt)
+      const wordCount = trimmed.split(/\s+/).length;
+      const isShort = trimmed.length < 30 && wordCount < 6;
       
-      // If it's a short phrase and not a question, enhance it
-      if (isShort && !isQuestion && index > 0) {
+      // If it's a short phrase and not first, enhance it
+      if (isShort && index > 0) {
         // Remove existing quotes if any
-        let enhanced = phrase.replace(/^["']|["']$/g, '');
+        let enhanced = trimmed.replace(/^["']|["']$/g, '');
         
         // Remove trailing period if exists
         enhanced = enhanced.replace(/\.$/, '');
