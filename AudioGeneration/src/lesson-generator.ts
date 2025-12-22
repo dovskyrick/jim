@@ -73,6 +73,14 @@ export class LessonGenerator {
       const normalizedText = phrase.trim().replace(/\s+/g, ' ');
       const cacheKey = `${content.voice || config.tts.defaultVoice}:${normalizedText}`;
       
+      // For vocab library lookup, strip formatting (quotes and ellipsis)
+      // This allows matching "Γεια σου..." with the stored "Γεια σου"
+      const strippedText = normalizedText
+        .replace(/^[""]/, '')      // Remove leading quote
+        .replace(/[""]$/, '')      // Remove trailing quote
+        .replace(/\.\.\.$/,'')     // Remove trailing ellipsis
+        .trim();
+      
       // Priority 1: Check in-memory cache (fastest)
       const cachedPath = phraseCache.get(cacheKey);
       
@@ -85,8 +93,9 @@ export class LessonGenerator {
       }
       
       // Priority 2: Check vocab library (if available)
-      if (this.vocabManager && this.vocabManager.hasAudio(normalizedText)) {
-        const vocabAudioPath = this.vocabManager.getAudioPath(normalizedText);
+      // Use stripped text (without quotes/ellipsis) for lookup
+      if (this.vocabManager && this.vocabManager.hasAudio(strippedText)) {
+        const vocabAudioPath = this.vocabManager.getAudioPath(strippedText);
         
         if (vocabAudioPath && existsSync(vocabAudioPath)) {
           // Copy from vocab library to temp
@@ -101,7 +110,7 @@ export class LessonGenerator {
           
           copyFileSync(vocabAudioPath, tempCopyPath);
           
-          console.log(`\n   [${i + 1}/${phrases.length}] 📚 Vocab library: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
+          console.log(`\n   [${i + 1}/${phrases.length}] 📚 Vocab library: "${strippedText}"`);
           
           phraseCache.set(cacheKey, tempCopyPath);
           phraseFiles.push(tempCopyPath);
@@ -131,10 +140,11 @@ export class LessonGenerator {
       );
       
       // Add to vocab library for future use (if manager is available)
+      // Store using stripped text (without quotes/ellipsis) as the key
       if (this.vocabManager) {
         try {
           await this.vocabManager.addToLibrary(
-            normalizedText,
+            strippedText,
             phraseFilePath,
             content.voice || config.tts.defaultVoice,
             'lesson-generated'
