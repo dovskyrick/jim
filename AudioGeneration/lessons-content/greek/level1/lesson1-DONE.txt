@@ -1,13 +1,191 @@
-How do you say “hello” in Greek?
+You are going to learn how to say "hello" informally in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Γεια σου..."
+[pause 2s]
+"Γεια σου..."
+[pause 3s]
 
-… (pause)
+Repeat it again.
+[pause 3s]
+"Γεια σου..."
+[pause 3s]
 
-Γεια σου.
+You are going to learn how to say "hello" politely or to more than one person.
+Please repeat after the voice.
+[pause 3s]
+"Γεια σας..."
+[pause 2s]
+"Γεια σας..."
+[pause 3s]
 
-… (pause)
+Repeat it again.
+[pause 3s]
+"Γεια σας..."
+[pause 3s]
 
-Good. How do you say “thank you”?
+Now answer.
+How do you say "hello" informally?
+[pause 3s]
+"Γεια σου..."
+[pause 3s]
 
-… (pause)
+You are going to learn how to say "goodbye" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Αντίο..."
+[pause 2s]
+"Αντίο..."
+[pause 3s]
 
-Ευχαριστώ.
+Repeat it again.
+[pause 3s]
+"Αντίο..."
+[pause 3s]
+
+You are going to learn how to say "please" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Παρακαλώ..."
+[pause 2s]
+"Παρακαλώ..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Παρακαλώ..."
+[pause 3s]
+
+You are going to learn how to say "thank you" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Ευχαριστώ..."
+[pause 2s]
+"Ευχαριστώ..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Ευχαριστώ..."
+[pause 3s]
+
+In Greek, the word you just learned can mean both "please" and "you're welcome".
+Now repeat the word again.
+[pause 3s]
+"Παρακαλώ..."
+[pause 3s]
+
+Now answer.
+How do you say "thank you"?
+[pause 3s]
+"Ευχαριστώ..."
+[pause 3s]
+
+You are going to learn how to say "yes" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Ναι..."
+[pause 2s]
+"Ναι..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Ναι..."
+[pause 3s]
+
+You are going to learn how to say "no" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Όχι..."
+[pause 2s]
+"Όχι..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Όχι..."
+[pause 3s]
+
+You are going to learn how to politely refuse.
+Please repeat after the voice.
+[pause 3s]
+"Όχι, ευχαριστώ..."
+[pause 2s]
+"Όχι, ευχαριστώ..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Όχι, ευχαριστώ..."
+[pause 3s]
+
+Now answer.
+How do you say "no"?
+[pause 3s]
+"Όχι..."
+[pause 3s]
+
+You are going to learn how to say "my name is..." in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Με λένε..."
+[pause 2s]
+"Με λένε..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Με λένε..."
+[pause 3s]
+
+You are going to learn how to ask "and you?" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Κι εσύ;..."
+[pause 2s]
+"Κι εσύ;..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Κι εσύ;..."
+[pause 3s]
+
+You are going to learn how to say "I don't understand".
+Please repeat after the voice.
+[pause 3s]
+"Δεν καταλαβαίνω..."
+[pause 2s]
+"Δεν καταλαβαίνω..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Δεν καταλαβαίνω..."
+[pause 3s]
+
+You are going to learn how to ask someone to speak more slowly.
+Please repeat after the voice.
+[pause 3s]
+"Πιο αργά, παρακαλώ..."
+[pause 2s]
+"Πιο αργά, παρακαλώ..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Πιο αργά, παρακαλώ..."
+[pause 3s]
+
+Now answer.
+How do you say "hello" politely?
+[pause 3s]
+"Γεια σας..."
+[pause 3s]
+
+Now answer.
+How do you say "goodbye"?
+[pause 3s]
+"Αντίο..."
+[pause 3s]

@@ -45,22 +45,26 @@ export class LessonGenerator {
     console.log(`   Level: ${content.levelName} (${content.levelId})`);
     console.log('='.repeat(60) + '\n');
 
-    // Step 1: Parse text into phrases (split by pause markers)
-    const rawPhrases = this.concatenator.parsePhrases(content.text);
-    console.log(`📝 Parsed ${rawPhrases.length} phrases from lesson text`);
-    
-    // Step 1.5: Enhance short answer phrases for better TTS
-    const phrases = this.concatenator.enhancePhrases(rawPhrases);
-    console.log(`✨ Enhanced phrases for TTS`);
+    // Step 1: Parse text into phrases and extract pause durations
+    const { phrases, pauseDurations } = this.concatenator.parsePhrases(content.text);
+    console.log(`📝 Parsed ${phrases.length} phrases with ${pauseDurations.length} pauses`);
+    console.log(`   Pause durations: ${pauseDurations.map(d => `${d}s`).join(', ')}`);
 
     // Step 2: Generate audio for each phrase
     const phraseFiles: string[] = [];
     
     for (let i = 0; i < phrases.length; i++) {
-      const phrase = phrases[i];
+      const phrase = phrases[i].trim();
+      
+      // Skip empty phrases or phrases with only punctuation/whitespace
+      if (!phrase || phrase.length === 0 || /^[\s\.\!\?\,\;\:]*$/.test(phrase)) {
+        console.log(`\n   [${i + 1}/${phrases.length}] Skipping empty phrase`);
+        continue;
+      }
+      
       console.log(`\n   [${i + 1}/${phrases.length}] Generating: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
       
-      const phraseFileName = `phrase-${i}.${config.tts.format}`;
+      const phraseFileName = `phrase-${phraseFiles.length}.${config.tts.format}`;
       const phraseFilePath = join(this.outputDir, 'temp', phraseFileName);
       
       // Ensure temp directory exists
@@ -85,15 +89,15 @@ export class LessonGenerator {
       }
     }
 
-    // Step 3: Concatenate with 3-second silences
+    // Step 3: Concatenate with variable silences based on parsed durations
     const fileName = `${content.languageId}-${content.levelId}-${content.lessonId}.${config.tts.format}`;
     const localPath = join(this.outputDir, fileName);
     
-    console.log(`\n🎼 Concatenating ${phraseFiles.length} phrases with 3s silences...`);
+    console.log(`\n🎼 Concatenating ${phraseFiles.length} phrases with variable silences...`);
     await this.concatenator.concatenateWithSilence(
       phraseFiles,
       localPath,
-      3,  // 3 seconds of silence
+      pauseDurations,  // Use extracted pause durations
       true  // Add silence at beginning and end
     );
 

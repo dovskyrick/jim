@@ -23,19 +23,43 @@ export class AudioConcatenator {
   }
 
   /**
-   * Parse lesson text into phrases (split by pause markers)
+   * Parse lesson text into phrases and extract pause durations
+   * ONLY supports [pause Xs] format (e.g., [pause 3s], [pause 2s])
+   * All other content (including "..." in answers) is preserved as-is
+   * @returns Object with phrases array and pauseDurations array
    */
-  parsePhrases(text: string): string[] {
-    // Split by various pause notations
-    const pauseRegex = /\.{3,}\s*\(pause\)|…\s*\(pause\)|\(pause\)|\.{3,}|…/gi;
+  parsePhrases(text: string): { phrases: string[]; pauseDurations: number[] } {
+    const phrases: string[] = [];
+    const pauseDurations: number[] = [];
     
-    // Split and clean up phrases
-    const phrases = text
-      .split(pauseRegex)
-      .map(phrase => phrase.trim())
-      .filter(phrase => phrase.length > 0);
+    // ONLY match [pause Xs] format - ignore everything else
+    const pauseRegex = /\[pause\s+(\d+(?:\.\d+)?)s\]/gi;
     
-    return phrases;
+    let lastIndex = 0;
+    let match;
+    
+    // Find all [pause Xs] markers and extract phrases between them
+    while ((match = pauseRegex.exec(text)) !== null) {
+      // Extract phrase before this pause marker
+      const phrase = text.substring(lastIndex, match.index).trim();
+      if (phrase.length > 0) {
+        phrases.push(phrase);
+      }
+      
+      // Extract pause duration from [pause Xs] format
+      const duration = parseFloat(match[1]);
+      pauseDurations.push(duration);
+      
+      lastIndex = pauseRegex.lastIndex;
+    }
+    
+    // Add remaining text after last pause
+    const remaining = text.substring(lastIndex).trim();
+    if (remaining.length > 0) {
+      phrases.push(remaining);
+    }
+    
+    return { phrases, pauseDurations };
   }
 
   /**
@@ -106,36 +130,51 @@ export class AudioConcatenator {
   }
 
   /**
-   * Concatenate multiple audio files with silence between them
+   * Concatenate multiple audio files with variable silence between them
    * @param audioFiles - Array of audio file paths
    * @param outputPath - Final output file path
-   * @param silenceDuration - Duration of silence between files (seconds)
-   * @param addSilenceAtEnds - Add silence at beginning and end
+   * @param silenceDurations - Array of silence durations (seconds) between files
+   * @param addSilenceAtEnds - Add silence at beginning and end (uses first duration)
    */
   async concatenateWithSilence(
     audioFiles: string[],
     outputPath: string,
-    silenceDuration: number = 3,
+    silenceDurations: number | number[] = 3,
     addSilenceAtEnds: boolean = true
   ): Promise<void> {
-    console.log(`🎼 Concatenating ${audioFiles.length} audio segments with ${silenceDuration}s silence...`);
+    // Convert single duration to array for backward compatibility
+    const durations = Array.isArray(silenceDurations) 
+      ? silenceDurations 
+      : Array(audioFiles.length).fill(silenceDurations);
+    
+    console.log(`🎼 Concatenating ${audioFiles.length} audio segments with variable silences...`);
 
-    // Generate silence file
-    const silencePath = join(this.tempDir, 'silence.mp3');
-    await this.generateSilence(silenceDuration, silencePath);
-    console.log(`   Created ${silenceDuration}s silence`);
+    // Generate unique silence files for each duration
+    const silenceFiles = new Map<number, string>();
+    
+    for (const duration of [...new Set(durations)]) {
+      const silencePath = join(this.tempDir, `silence-${duration}s.mp3`);
+      await this.generateSilence(duration, silencePath);
+      silenceFiles.set(duration, silencePath);
+      console.log(`   Created ${duration}s silence`);
+    }
 
     // Build concat list
     const concatList: string[] = [];
     
-    if (addSilenceAtEnds) {
-      concatList.push(silencePath);
+    if (addSilenceAtEnds && durations.length > 0) {
+      concatList.push(silenceFiles.get(durations[0])!);
     }
     
     for (let i = 0; i < audioFiles.length; i++) {
       concatList.push(audioFiles[i]);
-      if (i < audioFiles.length - 1 || addSilenceAtEnds) {
-        concatList.push(silencePath);
+      
+      // Add silence after this phrase if available
+      if (i < durations.length) {
+        concatList.push(silenceFiles.get(durations[i])!);
+      } else if (addSilenceAtEnds && i === audioFiles.length - 1) {
+        // Add ending silence using last duration
+        concatList.push(silenceFiles.get(durations[durations.length - 1])!);
       }
     }
 
@@ -161,7 +200,14 @@ export class AudioConcatenator {
           console.log(`   ✅ Concatenation complete!`);
           // Clean up temp files
           unlinkSync(concatFilePath);
-          unlinkSync(silencePath);
+          // Clean up all silence files
+          for (const silencePath of silenceFiles.values()) {
+            try {
+              unlinkSync(silencePath);
+            } catch (err) {
+              console.debug('Could not delete silence file:', err);
+            }
+          }
           resolve();
         })
         .on('error', (err) => {
