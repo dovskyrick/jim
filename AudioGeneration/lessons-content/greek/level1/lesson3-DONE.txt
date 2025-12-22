@@ -1,13 +1,178 @@
-How do you say “good morning” in Greek?
+Let’s begin by recalling what you already know.
 
-… (pause)
+How do you say "good morning"?
+[pause 3s]
+"Καλημέρα..."
+[pause 3s]
 
-Καλημέρα.
+How do you say "hello" informally?
+[pause 3s]
+"Γεια σου..."
+[pause 3s]
 
-… (pause)
+How do you say "thank you"?
+[pause 3s]
+"Ευχαριστώ..."
+[pause 3s]
 
-Very nice. How do you say “good night”?
+How do you say "no, thank you"?
+[pause 3s]
+"Όχι, ευχαριστώ..."
+[pause 3s]
 
-… (pause)
+How do you say "my name is..."?
+[pause 3s]
+"Με λένε..."
+[pause 3s]
 
-Καληνύχτα.
+How do you say "and you?"?
+[pause 3s]
+"Κι εσύ;..."
+[pause 3s]
+
+Good.
+Now let’s learn some new expressions.
+
+You are going to learn how to say "please" when asking for something.
+Please repeat after the voice.
+[pause 3s]
+"Θα ήθελα..."
+[pause 2s]
+"Θα ήθελα..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Θα ήθελα..."
+[pause 3s]
+
+You are going to learn how to say "water" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Νερό..."
+[pause 2s]
+"Νερό..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Νερό..."
+[pause 3s]
+
+You are going to learn how to say "coffee" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Καφέ..."
+[pause 2s]
+"Καφέ..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Καφέ..."
+[pause 3s]
+
+Now listen carefully.
+You can combine what you just learned.
+
+Please repeat after the voice.
+[pause 3s]
+"Θα ήθελα νερό..."
+[pause 2s]
+"Θα ήθελα νερό..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Θα ήθελα νερό..."
+[pause 3s]
+
+Please repeat after the voice.
+[pause 3s]
+"Θα ήθελα καφέ..."
+[pause 2s]
+"Θα ήθελα καφέ..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Θα ήθελα καφέ..."
+[pause 3s]
+
+Now answer.
+How do you say "I would like water"?
+[pause 3s]
+"Θα ήθελα νερό..."
+[pause 3s]
+
+Now answer.
+How do you say "I would like coffee"?
+[pause 3s]
+"Θα ήθελα καφέ..."
+[pause 3s]
+
+Good.
+Now let’s learn how to accept something.
+
+You are going to learn how to say "yes, please".
+Please repeat after the voice.
+[pause 3s]
+"Ναι, παρακαλώ..."
+[pause 2s]
+"Ναι, παρακαλώ..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Ναι, παρακαλώ..."
+[pause 3s]
+
+You are going to learn how to say "that’s all".
+Please repeat after the voice.
+[pause 3s]
+"Αυτό είναι όλο..."
+[pause 2s]
+"Αυτό είναι όλο..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Αυτό είναι όλο..."
+[pause 3s]
+
+Now let’s mix old and new.
+
+How do you say "yes"?
+[pause 3s]
+"Ναι..."
+[pause 3s]
+
+How do you say "yes, please"?
+[pause 3s]
+"Ναι, παρακαλώ..."
+[pause 3s]
+
+How do you say "I would like coffee"?
+[pause 3s]
+"Θα ήθελα καφέ..."
+[pause 3s]
+
+How do you say "thank you"?
+[pause 3s]
+"Ευχαριστώ..."
+[pause 3s]
+
+How do you say "that’s all"?
+[pause 3s]
+"Αυτό είναι όλο..."
+[pause 3s]
+
+How do you say "goodbye"?
+[pause 3s]
+"Αντίο..."
+[pause 3s]
+
+How do you say "good night"?
+[pause 3s]
+"Καληνύχτα..."
+[pause 3s]

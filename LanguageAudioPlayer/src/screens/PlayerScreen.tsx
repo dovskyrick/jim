@@ -71,13 +71,16 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
           
           return cappedTime;
         });
+      } else if (!isPlaying) {
+        // Reset lastUpdateTime when not playing to avoid jumps when resuming
+        lastUpdateTime = Date.now();
       }
     }, 100); // Update every 100ms for smooth animation
 
     return () => {
       clearInterval(smoothUpdateInterval);
     };
-  }, [isSliding, isPlaying, duration]);
+  }, [isSliding, isPlaying, duration, currentTime]); // Add currentTime dependency
 
   const initializePlayer = async () => {
     try {
@@ -140,6 +143,13 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
 
   const handleRestart = async () => {
     try {
+      // Reset UI time and slider first
+      setCurrentTime(0);
+      // Calculate slider position as percentage
+      const progress = duration > 0 ? (0 / duration) * 100 : 0;
+      setSliderPosition(progress); // This will be 0
+      
+      // Then sync audio player to match UI
       await playerRef.current.seekTo(0);
       if (!isPlaying) {
         await playerRef.current.play();

@@ -1,13 +1,111 @@
-How do you say “yes” in Greek?
+Let’s begin by recalling what you learned before.
+How do you say "hello" informally?
+[pause 3s]
+"Γεια σου..."
+[pause 3s]
 
-… (pause)
+How do you say "hello" politely?
+[pause 3s]
+"Γεια σας..."
+[pause 3s]
 
-Ναι.
+How do you say "thank you"?
+[pause 3s]
+"Ευχαριστώ..."
+[pause 3s]
 
-… (pause)
+How do you politely say "no, thank you"?
+[pause 3s]
+"Όχι, ευχαριστώ..."
+[pause 3s]
 
-And how do you say “no”?
+How do you say "my name is..."?
+[pause 3s]
+"Με λένε..."
+[pause 3s]
 
-… (pause)
+How do you ask "and you?".
+[pause 3s]
+"Κι εσύ;..."
+[pause 3s]
 
-Όχι.
+How do you say "I don't understand"?
+[pause 3s]
+"Δεν καταλαβαίνω..."
+[pause 3s]
+
+Good.
+Now you are going to learn something new.
+
+You are going to learn how to say "good morning" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Καλημέρα..."
+[pause 2s]
+"Καλημέρα..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Καλημέρα..."
+[pause 3s]
+
+You are going to learn how to say "good evening" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Καλησπέρα..."
+[pause 2s]
+"Καλησπέρα..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Καλησπέρα..."
+[pause 3s]
+
+You are going to learn how to say "good night" in Greek.
+Please repeat after the voice.
+[pause 3s]
+"Καληνύχτα..."
+[pause 2s]
+"Καληνύχτα..."
+[pause 3s]
+
+Repeat it again.
+[pause 3s]
+"Καληνύχτα..."
+[pause 3s]
+
+Now answer.
+How do you say "good morning"?
+[pause 3s]
+"Καλημέρα..."
+[pause 3s]
+
+Now answer.
+How do you say "good evening"?
+[pause 3s]
+"Καλησπέρα..."
+[pause 3s]
+
+Let’s mix old and new.
+
+How do you say "hello" informally?
+[pause 3s]
+"Γεια σου..."
+[pause 3s]
+
+How do you say "thank you"?
+[pause 3s]
+"Ευχαριστώ..."
+[pause 3s]
+
+How do you say "good night"?
+[pause 3s]
+"Καληνύχτα..."
+[pause 3s]
+
+How do you say "goodbye"?
+[pause 3s]
+"Αντίο..."
+[pause 3s]

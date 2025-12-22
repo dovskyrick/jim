@@ -50,8 +50,11 @@ export class LessonGenerator {
     console.log(`📝 Parsed ${phrases.length} phrases with ${pauseDurations.length} pauses`);
     console.log(`   Pause durations: ${pauseDurations.map(d => `${d}s`).join(', ')}`);
 
-    // Step 2: Generate audio for each phrase
+    // Step 2: Generate audio for each phrase (with caching)
     const phraseFiles: string[] = [];
+    const phraseCache = new Map<string, string>(); // Cache: "voice:text" -> filePath
+    let cacheHits = 0;
+    let cacheMisses = 0;
     
     for (let i = 0; i < phrases.length; i++) {
       const phrase = phrases[i].trim();
@@ -62,32 +65,56 @@ export class LessonGenerator {
         continue;
       }
       
-      console.log(`\n   [${i + 1}/${phrases.length}] Generating: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
+      // Generate cache key (voice + normalized text)
+      const normalizedText = phrase.trim().replace(/\s+/g, ' ');
+      const cacheKey = `${content.voice || config.tts.defaultVoice}:${normalizedText}`;
       
-      const phraseFileName = `phrase-${phraseFiles.length}.${config.tts.format}`;
-      const phraseFilePath = join(this.outputDir, 'temp', phraseFileName);
+      // Check if we've already generated this phrase
+      const cachedPath = phraseCache.get(cacheKey);
       
-      // Ensure temp directory exists
-      const tempDir = join(this.outputDir, 'temp');
-      if (!existsSync(tempDir)) {
-        mkdirSync(tempDir, { recursive: true });
-      }
-      
-      await this.ttsService.generateAndSave(
-        {
-          text: phrase,
-          voice: content.voice,
-        },
-        phraseFilePath
-      );
-      
-      phraseFiles.push(phraseFilePath);
-      
-      // Small delay between API calls to avoid rate limiting
-      if (i < phrases.length - 1) {
+      if (cachedPath) {
+        // Cache hit! Reuse existing audio
+        console.log(`\n   [${i + 1}/${phrases.length}] ♻️  Reusing cached: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
+        phraseFiles.push(cachedPath);
+        cacheHits++;
+      } else {
+        // Cache miss - generate new audio
+        console.log(`\n   [${i + 1}/${phrases.length}] 🎙️  Generating: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
+        
+        const phraseFileName = `phrase-${phraseCache.size}.${config.tts.format}`;
+        const phraseFilePath = join(this.outputDir, 'temp', phraseFileName);
+        
+        // Ensure temp directory exists
+        const tempDir = join(this.outputDir, 'temp');
+        if (!existsSync(tempDir)) {
+          mkdirSync(tempDir, { recursive: true });
+        }
+        
+        await this.ttsService.generateAndSave(
+          {
+            text: phrase,
+            voice: content.voice,
+          },
+          phraseFilePath
+        );
+        
+        // Store in cache for future reuse
+        phraseCache.set(cacheKey, phraseFilePath);
+        phraseFiles.push(phraseFilePath);
+        cacheMisses++;
+        
+        // Small delay between API calls to avoid rate limiting
         await new Promise(resolve => setTimeout(resolve, 500));
       }
     }
+    
+    // Log cache performance
+    console.log(`\n📊 Cache Performance:`);
+    console.log(`   Total phrases: ${phrases.length}`);
+    console.log(`   Unique phrases: ${phraseCache.size}`);
+    console.log(`   Cache hits: ${cacheHits}`);
+    console.log(`   TTS API calls: ${cacheMisses}`);
+    console.log(`   Savings: ${cacheHits > 0 ? Math.round((cacheHits / phrases.length) * 100) : 0}% fewer API calls`);
 
     // Step 3: Concatenate with variable silences based on parsed durations
     const fileName = `${content.languageId}-${content.levelId}-${content.lessonId}.${config.tts.format}`;
@@ -101,8 +128,9 @@ export class LessonGenerator {
       true  // Add silence at beginning and end
     );
 
-    // Step 4: Clean up temporary phrase files
-    this.concatenator.cleanupPhraseFiles(phraseFiles);
+    // Step 4: Clean up temporary phrase files (only unique ones)
+    const uniqueFiles = Array.from(new Set(phraseFiles));
+    this.concatenator.cleanupPhraseFiles(uniqueFiles);
 
     // Step 5: Upload to Firebase Storage
     const storagePath = `${config.storage.audioLessonsPath}/${fileName}`;
