@@ -11,7 +11,8 @@
     "generate": "tsx src/index.ts",
     "test": "tsx src/test.ts",
     "status": "tsx src/status.ts",
-    "update-manifest": "tsx src/update-manifest.ts"
+    "update-manifest": "tsx src/update-manifest.ts",
+    "repair-vocab": "tsx src/vocab-repair.ts"
   },
   "keywords": [
     "tts",
