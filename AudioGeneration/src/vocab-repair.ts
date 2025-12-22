@@ -6,7 +6,7 @@ import { OpenAITTSService } from './openai-tts.js';
 import { config } from './config.js';
 import { existsSync, statSync, unlinkSync, writeFileSync } from 'fs';
 import { resolve, join, dirname } from 'path';
-import { execSync } from 'child_process';
+import { spawnSync } from 'child_process';
 import ffmpegStatic from 'ffmpeg-static';
 
 /**
@@ -59,20 +59,31 @@ class VocabDoctor {
     try {
       // Use ffmpeg to analyze audio volume
       const ffmpegPath = ffmpegStatic || 'ffmpeg';
-      const command = `"${ffmpegPath}" -i "${filePath}" -af "volumedetect" -f null -`;
       
-      // FFmpeg outputs volumedetect to stderr, not stdout
-      // We need to capture stderr
-      let output = '';
-      try {
-        execSync(command, { 
+      if (!ffmpegPath) {
+        console.log(`   ⚠️  FFmpeg path not found`);
+        return false;
+      }
+      
+      // Use spawnSync for better Windows compatibility
+      const result = spawnSync(
+        ffmpegPath,
+        ['-i', filePath, '-af', 'volumedetect', '-f', 'null', '-'],
+        {
           encoding: 'utf-8',
-          stdio: ['pipe', 'pipe', 'pipe']
-        });
-      } catch (error: any) {
-        // FFmpeg returns non-zero exit code even on success when using -f null
-        // The volume info is in stderr which is captured in error.stderr
-        output = error.stderr || error.stdout || '';
+          windowsHide: true
+        }
+      );
+
+      // FFmpeg outputs volumedetect info to stderr
+      const output = result.stderr || '';
+      
+      // Debug output
+      console.log(`   [DEBUG] FFmpeg stderr length: ${output.length}`);
+      if (output.length > 0) {
+        const lines = output.split('\n');
+        const volumeLine = lines.find(line => line.includes('max_volume'));
+        console.log(`   [DEBUG] Volume line: ${volumeLine || 'not found'}`);
       }
 
       // Parse the volumedetect output
