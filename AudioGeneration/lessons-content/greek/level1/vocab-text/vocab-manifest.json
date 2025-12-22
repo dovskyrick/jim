@@ -1,0 +1,241 @@
+{
+  "version": "1.0",
+  "language": "greek",
+  "level": "level1",
+  "lastUpdated": "2025-12-22T17:35:39.231Z",
+  "nextFilenameNumber": 30,
+  "entries": [
+    {
+      "text": "Γεια σου",
+      "filename": "00001.mp3",
+      "audioPath": "vocab-audio/00001.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:19.335Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Γεια σας",
+      "filename": "00002.mp3",
+      "audioPath": "vocab-audio/00002.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:20.425Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Αντίο",
+      "filename": "00003.mp3",
+      "audioPath": "vocab-audio/00003.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:21.382Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Παρακαλώ",
+      "filename": "00004.mp3",
+      "audioPath": "vocab-audio/00004.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:22.518Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Ευχαριστώ",
+      "filename": "00005.mp3",
+      "audioPath": "vocab-audio/00005.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:23.573Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Ναι",
+      "filename": "00006.mp3",
+      "audioPath": "vocab-audio/00006.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:24.547Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Όχι",
+      "filename": "00007.mp3",
+      "audioPath": "vocab-audio/00007.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:25.337Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Όχι, ευχαριστώ",
+      "filename": "00008.mp3",
+      "audioPath": "vocab-audio/00008.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:26.698Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Με λένε",
+      "filename": "00009.mp3",
+      "audioPath": "vocab-audio/00009.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:27.977Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Κι εσύ;",
+      "filename": "00010.mp3",
+      "audioPath": "vocab-audio/00010.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:29.437Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Δεν καταλαβαίνω",
+      "filename": "00011.mp3",
+      "audioPath": "vocab-audio/00011.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:31.482Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Πιο αργά, παρακαλώ",
+      "filename": "00012.mp3",
+      "audioPath": "vocab-audio/00012.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:32.623Z",
+      "source": "vocab1"
+    },
+    {
+      "text": "Πα",
+      "filename": "00013.mp3",
+      "audioPath": "vocab-audio/00013.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:50.393Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "ρα",
+      "filename": "00014.mp3",
+      "audioPath": "vocab-audio/00014.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:51.736Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "κα",
+      "filename": "00015.mp3",
+      "audioPath": "vocab-audio/00015.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:52.998Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "λώ",
+      "filename": "00016.mp3",
+      "audioPath": "vocab-audio/00016.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:33:54.589Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Ευ",
+      "filename": "00017.mp3",
+      "audioPath": "vocab-audio/00017.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:34:38.362Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "χα",
+      "filename": "00018.mp3",
+      "audioPath": "vocab-audio/00018.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:34:39.753Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "ρι",
+      "filename": "00019.mp3",
+      "audioPath": "vocab-audio/00019.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:34:41.571Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "στώ",
+      "filename": "00020.mp3",
+      "audioPath": "vocab-audio/00020.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:34:42.918Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Δεν",
+      "filename": "00021.mp3",
+      "audioPath": "vocab-audio/00021.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:35:07.224Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "τα",
+      "filename": "00022.mp3",
+      "audioPath": "vocab-audio/00022.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:35:08.798Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "λα",
+      "filename": "00023.mp3",
+      "audioPath": "vocab-audio/00023.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:35:10.618Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "βα",
+      "filename": "00024.mp3",
+      "audioPath": "vocab-audio/00024.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:35:13.358Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "ί",
+      "filename": "00025.mp3",
+      "audioPath": "vocab-audio/00025.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:35:14.732Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "νω",
+      "filename": "00026.mp3",
+      "audioPath": "vocab-audio/00026.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:35:16.143Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Πιο",
+      "filename": "00027.mp3",
+      "audioPath": "vocab-audio/00027.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:35:21.883Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "αρ",
+      "filename": "00028.mp3",
+      "audioPath": "vocab-audio/00028.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:35:23.148Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "γά",
+      "filename": "00029.mp3",
+      "audioPath": "vocab-audio/00029.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-22T17:35:24.477Z",
+      "source": "lesson-generated"
+    }
+  ]
+}

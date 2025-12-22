@@ -73,6 +73,10 @@ export class LessonGenerator {
       const normalizedText = phrase.trim().replace(/\s+/g, ' ');
       const cacheKey = `${content.voice || config.tts.defaultVoice}:${normalizedText}`;
       
+      // Check if this is a trainee answer (has quotes at start and end)
+      // Only trainee answers should be stored in vocab library
+      const isTraineeAnswer = /^[""]/.test(normalizedText) && /[""]$/.test(normalizedText);
+      
       // For vocab library lookup, strip formatting (quotes and ellipsis)
       // This allows matching "Γεια σου..." with the stored "Γεια σου"
       const strippedText = normalizedText
@@ -93,8 +97,8 @@ export class LessonGenerator {
       }
       
       // Priority 2: Check vocab library (if available)
-      // Use stripped text (without quotes/ellipsis) for lookup
-      if (this.vocabManager && this.vocabManager.hasAudio(strippedText)) {
+      // Only check for trainee answers (those with quotes)
+      if (isTraineeAnswer && this.vocabManager && this.vocabManager.hasAudio(strippedText)) {
         const vocabAudioPath = this.vocabManager.getAudioPath(strippedText);
         
         if (vocabAudioPath && existsSync(vocabAudioPath)) {
@@ -140,8 +144,8 @@ export class LessonGenerator {
       );
       
       // Add to vocab library for future use (if manager is available)
-      // Store using stripped text (without quotes/ellipsis) as the key
-      if (this.vocabManager) {
+      // Only add trainee answers (those with quotes) to vocab library
+      if (isTraineeAnswer && this.vocabManager) {
         try {
           await this.vocabManager.addToLibrary(
             strippedText,
