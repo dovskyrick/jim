@@ -45,11 +45,15 @@ export class VocabGenerator {
     const tempFilePath = join(this.tempDir, tempFileName);
 
     try {
-      console.log(`   🎤 Generating: "${entry.text}"`);
+      // Format the text for TTS: add quotes and ellipsis for better pronunciation
+      // This prevents truncation and ensures full expression
+      const formattedText = `"${entry.text}..."`;
+      
+      console.log(`   🎤 Generating: "${entry.text}" → ${formattedText}`);
       
       await this.ttsService.generateAndSave(
         {
-          text: entry.text,
+          text: formattedText,
           voice: voice as any,
         },
         tempFilePath
