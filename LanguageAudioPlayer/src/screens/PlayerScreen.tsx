@@ -45,6 +45,40 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
     };
   }, [lesson.storagePath]);
 
+  // Client-side timer for smooth slider updates (UI is source of truth)
+  useEffect(() => {
+    let lastUpdateTime = Date.now();
+    
+    // Increment position every 100ms based on elapsed time
+    const smoothUpdateInterval = setInterval(() => {
+      if (!isSliding && isPlaying) {
+        const now = Date.now();
+        const elapsed = now - lastUpdateTime;
+        lastUpdateTime = now;
+        
+        // Increment current time by elapsed milliseconds
+        setCurrentTime(prevTime => {
+          const newTime = prevTime + elapsed;
+          
+          // Don't go past duration
+          const cappedTime = (duration > 0 && newTime > duration) ? duration : newTime;
+          
+          // Also update slider position based on new time
+          if (duration > 0) {
+            const progress = (cappedTime / duration) * 100;
+            setSliderPosition(progress);
+          }
+          
+          return cappedTime;
+        });
+      }
+    }, 100); // Update every 100ms for smooth animation
+
+    return () => {
+      clearInterval(smoothUpdateInterval);
+    };
+  }, [isSliding, isPlaying, duration]);
+
   const initializePlayer = async () => {
     try {
       setLoading(true);
@@ -75,16 +109,11 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
 
   const handleStatusUpdate = (status: AVPlaybackStatusSuccess) => {
     setIsPlaying(status.isPlaying);
-    setCurrentTime(status.positionMillis);
     setDuration(status.durationMillis || 0);
 
-    // Only update slider if user isn't dragging
-    if (!isSliding) {
-      const progress = status.durationMillis > 0 
-        ? (status.positionMillis / status.durationMillis) * 100 
-        : 0;
-      setSliderPosition(progress);
-    }
+    // NOTE: We don't update currentTime or sliderPosition here anymore
+    // The polling mechanism (100ms interval) handles smooth position updates
+    // This prevents conflicting updates that cause the slider to freeze/jump
 
     // Check if finished
     if (status.didJustFinish) {
@@ -97,7 +126,11 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
     try {
       if (isPlaying) {
         await playerRef.current.pause();
+        // When pausing, sync audio player to our UI time
+        await playerRef.current.seekTo(currentTime);
       } else {
+        // When resuming, sync audio player to our UI time
+        await playerRef.current.seekTo(currentTime);
         await playerRef.current.play();
       }
     } catch (err) {
@@ -118,7 +151,12 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
 
   const handleSkipForward = async () => {
     try {
-      await playerRef.current.skipForward(15000); // 15 seconds
+      // Update UI time first
+      const newTime = Math.min(currentTime + 15000, duration);
+      setCurrentTime(newTime);
+      
+      // Then sync audio player to match UI
+      await playerRef.current.seekTo(newTime);
     } catch (err) {
       console.error('❌ Skip forward error:', err);
     }
@@ -126,7 +164,12 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
 
   const handleSkipBackward = async () => {
     try {
-      await playerRef.current.skipBackward(15000); // 15 seconds
+      // Update UI time first
+      const newTime = Math.max(currentTime - 15000, 0);
+      setCurrentTime(newTime);
+      
+      // Then sync audio player to match UI
+      await playerRef.current.seekTo(newTime);
     } catch (err) {
       console.error('❌ Skip backward error:', err);
     }
