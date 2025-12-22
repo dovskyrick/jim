@@ -1,9 +1,10 @@
 import { OpenAITTSService } from './openai-tts.js';
 import { FirebaseStorageService } from './firebase-storage.js';
 import { AudioConcatenator } from './audio-concatenator.js';
+import { VocabManager } from './vocab-manager.js';
 import { LessonContent, GeneratedAudio, Manifest } from './types.js';
 import { config } from './config.js';
-import { mkdirSync, existsSync, unlinkSync } from 'fs';
+import { mkdirSync, existsSync, unlinkSync, copyFileSync, readFileSync } from 'fs';
 import { resolve, join } from 'path';
 
 /**
@@ -15,12 +16,14 @@ export class LessonGenerator {
   private storageService: FirebaseStorageService;
   private concatenator: AudioConcatenator;
   private outputDir: string;
+  private vocabManager: VocabManager | null;
 
-  constructor() {
+  constructor(vocabManager?: VocabManager) {
     this.ttsService = new OpenAITTSService();
     this.storageService = new FirebaseStorageService();
     this.concatenator = new AudioConcatenator();
     this.outputDir = resolve(config.storage.outputDir);
+    this.vocabManager = vocabManager || null;
 
     // Create output directory if it doesn't exist
     if (!existsSync(this.outputDir)) {
@@ -50,10 +53,11 @@ export class LessonGenerator {
     console.log(`📝 Parsed ${phrases.length} phrases with ${pauseDurations.length} pauses`);
     console.log(`   Pause durations: ${pauseDurations.map(d => `${d}s`).join(', ')}`);
 
-    // Step 2: Generate audio for each phrase (with caching)
+    // Step 2: Generate audio for each phrase (with vocab library and caching)
     const phraseFiles: string[] = [];
     const phraseCache = new Map<string, string>(); // Cache: "voice:text" -> filePath
     let cacheHits = 0;
+    let vocabHits = 0;
     let cacheMisses = 0;
     
     for (let i = 0; i < phrases.length; i++) {
@@ -69,52 +73,95 @@ export class LessonGenerator {
       const normalizedText = phrase.trim().replace(/\s+/g, ' ');
       const cacheKey = `${content.voice || config.tts.defaultVoice}:${normalizedText}`;
       
-      // Check if we've already generated this phrase
+      // Priority 1: Check in-memory cache (fastest)
       const cachedPath = phraseCache.get(cacheKey);
       
       if (cachedPath) {
         // Cache hit! Reuse existing audio
-        console.log(`\n   [${i + 1}/${phrases.length}] ♻️  Reusing cached: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
+        console.log(`\n   [${i + 1}/${phrases.length}] ♻️  Session cache: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
         phraseFiles.push(cachedPath);
         cacheHits++;
-      } else {
-        // Cache miss - generate new audio
-        console.log(`\n   [${i + 1}/${phrases.length}] 🎙️  Generating: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
-        
-        const phraseFileName = `phrase-${phraseCache.size}.${config.tts.format}`;
-        const phraseFilePath = join(this.outputDir, 'temp', phraseFileName);
-        
-        // Ensure temp directory exists
-        const tempDir = join(this.outputDir, 'temp');
-        if (!existsSync(tempDir)) {
-          mkdirSync(tempDir, { recursive: true });
-        }
-        
-        await this.ttsService.generateAndSave(
-          {
-            text: phrase,
-            voice: content.voice,
-          },
-          phraseFilePath
-        );
-        
-        // Store in cache for future reuse
-        phraseCache.set(cacheKey, phraseFilePath);
-        phraseFiles.push(phraseFilePath);
-        cacheMisses++;
-        
-        // Small delay between API calls to avoid rate limiting
-        await new Promise(resolve => setTimeout(resolve, 500));
+        continue;
       }
+      
+      // Priority 2: Check vocab library (if available)
+      if (this.vocabManager && this.vocabManager.hasAudio(normalizedText)) {
+        const vocabAudioPath = this.vocabManager.getAudioPath(normalizedText);
+        
+        if (vocabAudioPath && existsSync(vocabAudioPath)) {
+          // Copy from vocab library to temp
+          const tempCopyFileName = `phrase-${phraseCache.size}.${config.tts.format}`;
+          const tempCopyPath = join(this.outputDir, 'temp', tempCopyFileName);
+          
+          // Ensure temp directory exists
+          const tempDir = join(this.outputDir, 'temp');
+          if (!existsSync(tempDir)) {
+            mkdirSync(tempDir, { recursive: true });
+          }
+          
+          copyFileSync(vocabAudioPath, tempCopyPath);
+          
+          console.log(`\n   [${i + 1}/${phrases.length}] 📚 Vocab library: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
+          
+          phraseCache.set(cacheKey, tempCopyPath);
+          phraseFiles.push(tempCopyPath);
+          vocabHits++;
+          continue;
+        }
+      }
+      
+      // Priority 3: Generate new audio via TTS
+      console.log(`\n   [${i + 1}/${phrases.length}] 🎙️  Generating: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
+      
+      const phraseFileName = `phrase-${phraseCache.size}.${config.tts.format}`;
+      const phraseFilePath = join(this.outputDir, 'temp', phraseFileName);
+      
+      // Ensure temp directory exists
+      const tempDir = join(this.outputDir, 'temp');
+      if (!existsSync(tempDir)) {
+        mkdirSync(tempDir, { recursive: true });
+      }
+      
+      await this.ttsService.generateAndSave(
+        {
+          text: phrase,
+          voice: content.voice,
+        },
+        phraseFilePath
+      );
+      
+      // Add to vocab library for future use (if manager is available)
+      if (this.vocabManager) {
+        try {
+          await this.vocabManager.addToLibrary(
+            normalizedText,
+            phraseFilePath,
+            content.voice || config.tts.defaultVoice,
+            'lesson-generated'
+          );
+        } catch (error) {
+          console.warn(`   ⚠️  Could not add to vocab library: ${error}`);
+        }
+      }
+      
+      // Store in cache for future reuse within this lesson
+      phraseCache.set(cacheKey, phraseFilePath);
+      phraseFiles.push(phraseFilePath);
+      cacheMisses++;
+      
+      // Small delay between API calls to avoid rate limiting
+      await new Promise(resolve => setTimeout(resolve, 500));
     }
     
     // Log cache performance
-    console.log(`\n📊 Cache Performance:`);
+    console.log(`\n📊 Performance Summary:`);
     console.log(`   Total phrases: ${phrases.length}`);
     console.log(`   Unique phrases: ${phraseCache.size}`);
-    console.log(`   Cache hits: ${cacheHits}`);
+    console.log(`   Session cache hits: ${cacheHits}`);
+    console.log(`   Vocab library hits: ${vocabHits}`);
     console.log(`   TTS API calls: ${cacheMisses}`);
-    console.log(`   Savings: ${cacheHits > 0 ? Math.round((cacheHits / phrases.length) * 100) : 0}% fewer API calls`);
+    const totalReused = cacheHits + vocabHits;
+    console.log(`   Savings: ${totalReused > 0 ? Math.round((totalReused / phrases.length) * 100) : 0}% fewer API calls`);
 
     // Step 3: Concatenate with variable silences based on parsed durations
     const fileName = `${content.languageId}-${content.levelId}-${content.lessonId}.${config.tts.format}`;

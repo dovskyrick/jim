@@ -58,3 +58,39 @@ export interface LessonContent {
   voice?: 'alloy' | 'echo' | 'fable' | 'onyx' | 'nova' | 'shimmer';
 }
 
+/**
+ * Vocabulary system types
+ */
+
+export interface VocabEntry {
+  text: string;           // Greek text
+  status: 'NEW' | 'GENERATED';
+  lineNumber: number;     // Track which line in the file
+}
+
+export interface VocabFileInfo {
+  filePath: string;       // Full path to vocab file
+  languageId: string;
+  levelId: string;
+  vocabId: string;        // e.g., "vocab1"
+  status: 'TODO' | 'DONE';
+}
+
+export interface VocabManifestEntry {
+  text: string;
+  filename: string;
+  audioPath: string;      // Relative path from language/level directory
+  voice: string;
+  generatedAt: string;
+  source: string;         // Which vocab file or "lesson-generated"
+}
+
+export interface VocabManifest {
+  version: string;
+  language: string;
+  level: string;
+  lastUpdated: string;
+  nextFilenameNumber: number; // Track next sequential number
+  entries: VocabManifestEntry[];
+}
+
