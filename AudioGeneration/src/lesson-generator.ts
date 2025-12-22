@@ -46,8 +46,12 @@ export class LessonGenerator {
     console.log('='.repeat(60) + '\n');
 
     // Step 1: Parse text into phrases (split by pause markers)
-    const phrases = this.concatenator.parsePhrases(content.text);
-    console.log(`📝 Parsed ${phrases.length} phrases from lesson text`);
+    const rawPhrases = this.concatenator.parsePhrases(content.text);
+    console.log(`📝 Parsed ${rawPhrases.length} phrases from lesson text`);
+    
+    // Step 1.5: Enhance short answer phrases for better TTS
+    const phrases = this.concatenator.enhancePhrases(rawPhrases);
+    console.log(`✨ Enhanced phrases for TTS`);
 
     // Step 2: Generate audio for each phrase
     const phraseFiles: string[] = [];

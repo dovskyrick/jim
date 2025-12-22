@@ -39,6 +39,44 @@ export class AudioConcatenator {
   }
 
   /**
+   * Enhance short answer phrases for better TTS pronunciation
+   * Wraps short phrases (likely answers) in quotes and adds "..."
+   * Example: "Tres bien" becomes "Tres bien..."
+   * 
+   * @param phrases - Array of phrase strings
+   * @returns Enhanced phrases
+   */
+  enhancePhrases(phrases: string[]): string[] {
+    return phrases.map((phrase, index) => {
+      // Check if this is likely a short answer phrase
+      // Criteria: 
+      // - Under 30 characters
+      // - Not a question (doesn't end with ?)
+      // - Less than 6 words
+      const wordCount = phrase.split(/\s+/).length;
+      const isQuestion = phrase.trim().endsWith('?');
+      const isShort = phrase.length < 30 && wordCount < 6;
+      
+      // If it's a short phrase and not a question, enhance it
+      if (isShort && !isQuestion && index > 0) {
+        // Remove existing quotes if any
+        let enhanced = phrase.replace(/^["']|["']$/g, '');
+        
+        // Remove trailing period if exists
+        enhanced = enhanced.replace(/\.$/, '');
+        
+        // Wrap in quotes and add ellipsis
+        enhanced = `"${enhanced}..."`;
+        
+        console.log(`   📝 Enhanced answer: "${phrase}" → ${enhanced}`);
+        return enhanced;
+      }
+      
+      return phrase;
+    });
+  }
+
+  /**
    * Generate a silence audio file
    * @param duration - Duration in seconds
    * @param outputPath - Where to save the silence file
