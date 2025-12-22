@@ -141,29 +141,17 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
     }
   };
 
-  const handleRestart = async () => {
-    try {
-      // Reset UI time and slider first
-      setCurrentTime(0);
-      // Calculate slider position as percentage
-      const progress = duration > 0 ? (0 / duration) * 100 : 0;
-      setSliderPosition(progress); // This will be 0
-      
-      // Then sync audio player to match UI
-      await playerRef.current.seekTo(0);
-      if (!isPlaying) {
-        await playerRef.current.play();
-      }
-    } catch (err) {
-      console.error('❌ Restart error:', err);
-    }
-  };
 
   const handleSkipForward = async () => {
     try {
       // Update UI time first
       const newTime = Math.min(currentTime + 15000, duration);
       setCurrentTime(newTime);
+      
+      // Update slider position immediately (don't wait for timer)
+      if (duration > 0) {
+        setSliderPosition((newTime / duration) * 100);
+      }
       
       // Then sync audio player to match UI
       await playerRef.current.seekTo(newTime);
@@ -177,6 +165,11 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
       // Update UI time first
       const newTime = Math.max(currentTime - 15000, 0);
       setCurrentTime(newTime);
+      
+      // Update slider position immediately (don't wait for timer)
+      if (duration > 0) {
+        setSliderPosition((newTime / duration) * 100);
+      }
       
       // Then sync audio player to match UI
       await playerRef.current.seekTo(newTime);
@@ -317,33 +310,18 @@ export default function PlayerScreen({ navigation, route }: PlayerScreenProps) {
             </Text>
           </TouchableOpacity>
 
-          {/* Skip Forward Button */}
-          <TouchableOpacity
-            style={[styles.skipButton, isSliding && styles.buttonDisabled]}
-            onPress={handleSkipForward}
-            disabled={isSliding}
-            activeOpacity={0.7}
-          >
-            <Text style={[styles.skipIcon, isSliding && styles.iconDisabled]}>↻</Text>
-            <Text style={[styles.skipLabel, isSliding && styles.labelDisabled]}>+15s</Text>
-          </TouchableOpacity>
-        </View>
+               {/* Skip Forward Button */}
+               <TouchableOpacity
+                 style={[styles.skipButton, isSliding && styles.buttonDisabled]}
+                 onPress={handleSkipForward}
+                 disabled={isSliding}
+                 activeOpacity={0.7}
+               >
+                 <Text style={[styles.skipIcon, isSliding && styles.iconDisabled]}>↻</Text>
+                 <Text style={[styles.skipLabel, isSliding && styles.labelDisabled]}>+15s</Text>
+               </TouchableOpacity>
+             </View>
 
-        {/* Restart Button */}
-        <TouchableOpacity
-          style={styles.restartButton}
-          onPress={handleRestart}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.restartButtonText}>↻ Restart</Text>
-        </TouchableOpacity>
-
-        {/* Info */}
-        <View style={styles.infoBox}>
-          <Text style={styles.infoText}>
-            Audio will continue playing even when the screen is off 🌙
-          </Text>
-        </View>
       </View>
 
       {/* Debug Info */}
@@ -476,31 +454,6 @@ const styles = StyleSheet.create({
   playButtonText: {
     fontSize: 48,
     color: '#fff',
-  },
-  restartButton: {
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#007AFF',
-    marginBottom: 30,
-  },
-  restartButtonText: {
-    fontSize: 16,
-    color: '#007AFF',
-    fontWeight: '600',
-  },
-  infoBox: {
-    backgroundColor: '#e3f2fd',
-    padding: 16,
-    borderRadius: 8,
-    marginTop: 20,
-  },
-  infoText: {
-    fontSize: 14,
-    color: '#1976d2',
-    textAlign: 'center',
   },
   loadingText: {
     marginTop: 12,
