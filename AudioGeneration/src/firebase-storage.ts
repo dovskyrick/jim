@@ -81,16 +81,13 @@ export class FirebaseStorageService {
         },
       });
 
-      // Make the file publicly accessible
-      await file.makePublic();
-
-      // Get the public URL
-      const publicUrl = `https://storage.googleapis.com/${this.bucket.name}/${storageDestinationPath}`;
+      // Files are now private - access only via signed URLs from Cloud Functions
+      // No longer making files public for security
       
       console.log(`✅ Upload successful!`);
-      console.log(`🔗 Public URL: ${publicUrl}`);
+      console.log(`🔒 File stored privately: ${storageDestinationPath}`);
 
-      return publicUrl;
+      return storageDestinationPath; // Return path instead of public URL
     } catch (error) {
       if (error instanceof Error) {
         throw new Error(`Failed to upload to Firebase: ${error.message}`);
