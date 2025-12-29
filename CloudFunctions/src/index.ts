@@ -70,17 +70,9 @@ setInterval(() => rateLimiter.cleanup(), 5 * 60 * 1000);
  *   "expiresAt": "2025-12-30T12:00:00Z"
  * }
  */
-export const getAudioUrl = onRequest(async (req, res) => {
-  // Enable CORS
-  res.set('Access-Control-Allow-Origin', '*');
-  
-  if (req.method === 'OPTIONS') {
-    res.set('Access-Control-Allow-Methods', 'POST');
-    res.set('Access-Control-Allow-Headers', 'Content-Type');
-    res.status(204).send('');
-    return;
-  }
-
+export const getAudioUrl = onRequest({
+  cors: true
+}, async (req, res) => {
   // Only allow POST requests
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
@@ -168,7 +160,9 @@ export const getAudioUrl = onRequest(async (req, res) => {
 /**
  * Health check endpoint
  */
-export const health = onRequest((req, res) => {
+export const health = onRequest({
+  cors: true
+}, (req, res) => {
   res.status(200).json({ 
     status: 'healthy',
     timestamp: new Date().toISOString(),
