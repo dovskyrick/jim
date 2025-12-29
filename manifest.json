@@ -72,6 +72,11 @@
               "id": "lesson2",
               "title": "Lesson 2",
               "storagePath": "audio-lessons/greek-level1-lesson2.mp3"
+            },
+            {
+              "id": "lesson3",
+              "title": "Lesson 3",
+              "storagePath": "audio-lessons/greek-level1-lesson3.mp3"
             }
           ]
         }

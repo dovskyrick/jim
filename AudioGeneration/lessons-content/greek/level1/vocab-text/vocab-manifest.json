@@ -2,8 +2,8 @@
   "version": "1.0",
   "language": "greek",
   "level": "level1",
-  "lastUpdated": "2025-12-29T16:41:45.970Z",
-  "nextFilenameNumber": 50,
+  "lastUpdated": "2025-12-29T17:04:18.289Z",
+  "nextFilenameNumber": 58,
   "entries": [
     {
       "text": "Γεια σου",
@@ -395,6 +395,70 @@
       "audioPath": "vocab-audio/00049.mp3",
       "voice": "alloy",
       "generatedAt": "2025-12-26T17:58:26.942Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Θα ήθελα",
+      "filename": "00050.mp3",
+      "audioPath": "vocab-audio/00050.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-29T17:03:30.604Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Νερό",
+      "filename": "00051.mp3",
+      "audioPath": "vocab-audio/00051.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-29T17:03:37.086Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Καφέ",
+      "filename": "00052.mp3",
+      "audioPath": "vocab-audio/00052.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-29T17:03:40.197Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Θα ήθελα νερό",
+      "filename": "00053.mp3",
+      "audioPath": "vocab-audio/00053.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-29T17:03:44.089Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Θα ήθελα καφέ",
+      "filename": "00054.mp3",
+      "audioPath": "vocab-audio/00054.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-29T17:03:47.313Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Ναι, παρακαλώ",
+      "filename": "00055.mp3",
+      "audioPath": "vocab-audio/00055.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-29T17:03:55.196Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Αυτό είναι όλο",
+      "filename": "00056.mp3",
+      "audioPath": "vocab-audio/00056.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-29T17:03:58.659Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Καληνύχτα",
+      "filename": "00057.mp3",
+      "audioPath": "vocab-audio/00057.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-29T17:04:10.935Z",
       "source": "lesson-generated"
     }
   ]
