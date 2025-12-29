@@ -4,8 +4,20 @@ import { AudioConcatenator } from './audio-concatenator.js';
 import { VocabManager } from './vocab-manager.js';
 import { LessonContent, GeneratedAudio, Manifest } from './types.js';
 import { config } from './config.js';
-import { mkdirSync, existsSync, unlinkSync, copyFileSync, readFileSync } from 'fs';
+import { mkdirSync, existsSync, unlinkSync, copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { resolve, join } from 'path';
+import { LessonMetadata, SegmentInfo, VocabDependency, SegmentTracker } from './lesson-metadata-types.js';
+import ffmpeg from 'fluent-ffmpeg';
+import ffmpegStatic from 'ffmpeg-static';
+import ffprobeStatic from 'ffprobe-static';
+
+// Set ffmpeg and ffprobe paths
+if (ffmpegStatic) {
+  ffmpeg.setFfmpegPath(ffmpegStatic);
+}
+if (ffprobeStatic.path) {
+  ffmpeg.setFfprobePath(ffprobeStatic.path);
+}
 
 /**
  * Lesson Generator
@@ -56,6 +68,7 @@ export class LessonGenerator {
     // Step 2: Generate audio for each phrase (with vocab library and caching)
     const phraseFiles: string[] = [];
     const phraseCache = new Map<string, string>(); // Cache: "voice:text" -> filePath
+    const segmentTrackers: SegmentTracker[] = []; // Track source of each phrase for metadata
     let cacheHits = 0;
     let vocabHits = 0;
     let cacheMisses = 0;
@@ -89,9 +102,18 @@ export class LessonGenerator {
       const cachedPath = phraseCache.get(cacheKey);
       
       if (cachedPath) {
-        // Cache hit! Reuse existing audio
+        // Cache hit! Reuse existing audio (need to track each usage)
         console.log(`\n   [${i + 1}/${phrases.length}] ♻️  Session cache: "${phrase.substring(0, 50)}${phrase.length > 50 ? '...' : ''}"`);
         phraseFiles.push(cachedPath);
+        
+        // Track this segment (source was determined when first cached)
+        segmentTrackers.push({
+          phraseFile: cachedPath,
+          phraseText: phrase,
+          normalizedText: strippedText,
+          source: 'tts', // Assume TTS for cached items (could be improved)
+        });
+        
         cacheHits++;
         continue;
       }
@@ -118,6 +140,17 @@ export class LessonGenerator {
           
           phraseCache.set(cacheKey, tempCopyPath);
           phraseFiles.push(tempCopyPath);
+          
+          // Track this vocab segment
+          const vocabFilename = this.vocabManager.getFilename(strippedText);
+          segmentTrackers.push({
+            phraseFile: tempCopyPath,
+            phraseText: phrase,
+            normalizedText: strippedText,
+            source: 'vocab',
+            vocabFile: vocabFilename || undefined,
+          });
+          
           vocabHits++;
           continue;
         }
@@ -161,6 +194,15 @@ export class LessonGenerator {
       // Store in cache for future reuse within this lesson
       phraseCache.set(cacheKey, phraseFilePath);
       phraseFiles.push(phraseFilePath);
+      
+      // Track this TTS segment
+      segmentTrackers.push({
+        phraseFile: phraseFilePath,
+        phraseText: phrase,
+        normalizedText: strippedText,
+        source: 'tts',
+      });
+      
       cacheMisses++;
       
       // Small delay between API calls to avoid rate limiting
@@ -188,6 +230,32 @@ export class LessonGenerator {
       pauseDurations,  // Use extracted pause durations
       true  // Add silence at beginning and end
     );
+
+    // Step 3.5: Build and save metadata JSON
+    console.log(`\n💾 Building lesson metadata...`);
+    const metadata = await this.buildMetadata(
+      content,
+      phraseFiles,
+      segmentTrackers,
+      pauseDurations,
+      fileName
+    );
+    
+    // Save metadata to lessons-audio directory (final destination)
+    const contentDir = resolve('lessons-content', content.languageId, content.levelId);
+    const audioDir = resolve('lessons-audio', content.languageId, content.levelId);
+    
+    // Ensure audio directory exists
+    if (!existsSync(audioDir)) {
+      mkdirSync(audioDir, { recursive: true });
+    }
+    
+    const metadataPath = join(audioDir, `${content.lessonId}.metadata.json`);
+    writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), 'utf-8');
+    console.log(`   ✅ Metadata saved: ${metadataPath}`);
+    console.log(`   📊 Total segments: ${metadata.segments.length}`);
+    console.log(`   ⏱️  Total duration: ${(metadata.totalDurationMs / 1000).toFixed(1)}s`);
+    console.log(`   📚 Vocab dependencies: ${Object.keys(metadata.vocabDependencies).length}`);
 
     // Step 4: Clean up temporary phrase files (only unique ones)
     const uniqueFiles = Array.from(new Set(phraseFiles));
@@ -226,6 +294,108 @@ export class LessonGenerator {
     console.log('\n✨ Lesson generation complete!\n');
 
     return result;
+  }
+
+  /**
+   * Get audio file duration in milliseconds using ffprobe
+   * @param filePath - Path to audio file
+   * @returns Duration in milliseconds
+   */
+  private async getAudioDurationMs(filePath: string): Promise<number> {
+    return new Promise((resolve, reject) => {
+      ffmpeg.ffprobe(filePath, (err, metadata) => {
+        if (err) {
+          reject(err);
+        } else {
+          const durationSec = metadata.format.duration || 0;
+          resolve(Math.round(durationSec * 1000));
+        }
+      });
+    });
+  }
+
+  /**
+   * Build comprehensive metadata for the lesson
+   * Calculates precise timing for each segment
+   */
+  private async buildMetadata(
+    content: LessonContent,
+    phraseFiles: string[],
+    segmentTrackers: SegmentTracker[],
+    pauseDurations: number[],
+    fileName: string
+  ): Promise<LessonMetadata> {
+    const segments: SegmentInfo[] = [];
+    const vocabDeps: Record<string, VocabDependency> = {};
+    let currentTimeMs = 0;
+
+    // Starting silence (3 seconds by default, or first pause duration)
+    const startingSilenceMs = (pauseDurations[0] || 3) * 1000;
+    segments.push({
+      index: 0,
+      startMs: 0,
+      durationMs: startingSilenceMs,
+      type: 'silence',
+    });
+    currentTimeMs = startingSilenceMs;
+
+    // Process each phrase
+    for (let i = 0; i < phraseFiles.length; i++) {
+      const phraseFile = phraseFiles[i];
+      const tracker = segmentTrackers[i];
+
+      // Get actual audio duration
+      const phraseDurationMs = await this.getAudioDurationMs(phraseFile);
+
+      // Create segment
+      const segment: SegmentInfo = {
+        index: segments.length,
+        startMs: currentTimeMs,
+        durationMs: phraseDurationMs,
+        type: tracker.source,
+        text: tracker.phraseText,
+        normalized: tracker.normalizedText,
+      };
+
+      // Add vocab file reference if from vocab library
+      if (tracker.source === 'vocab' && tracker.vocabFile) {
+        segment.vocabFile = `vocab-audio/${tracker.vocabFile}`;
+
+        // Track vocab dependency
+        const vocabKey = segment.vocabFile;
+        if (!vocabDeps[vocabKey]) {
+          vocabDeps[vocabKey] = {
+            text: tracker.normalizedText,
+            segments: [],
+          };
+        }
+        vocabDeps[vocabKey].segments.push(segment.index);
+      }
+
+      segments.push(segment);
+      currentTimeMs += phraseDurationMs;
+
+      // Add pause after this phrase
+      const pauseMs = (pauseDurations[i] || 3) * 1000;
+      segments.push({
+        index: segments.length,
+        startMs: currentTimeMs,
+        durationMs: pauseMs,
+        type: 'silence',
+      });
+      currentTimeMs += pauseMs;
+    }
+
+    return {
+      lessonId: content.lessonId,
+      languageId: content.languageId,
+      levelId: content.levelId,
+      audioFile: fileName,
+      totalDurationMs: currentTimeMs,
+      generatedAt: new Date().toISOString(),
+      segments,
+      vocabDependencies: vocabDeps,
+    };
   }
 
   /**

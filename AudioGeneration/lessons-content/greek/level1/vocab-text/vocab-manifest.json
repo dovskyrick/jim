@@ -2,8 +2,8 @@
   "version": "1.0",
   "language": "greek",
   "level": "level1",
-  "lastUpdated": "2025-12-22T18:10:22.000Z",
-  "nextFilenameNumber": 30,
+  "lastUpdated": "2025-12-29T16:41:45.970Z",
+  "nextFilenameNumber": 50,
   "entries": [
     {
       "text": "Γεια σου",
@@ -235,6 +235,166 @@
       "audioPath": "vocab-audio/00029.mp3",
       "voice": "alloy",
       "generatedAt": "2025-12-22T17:35:24.477Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Καλημέρα",
+      "filename": "00030.mp3",
+      "audioPath": "vocab-audio/00030.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:57:32.742Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "λη",
+      "filename": "00031.mp3",
+      "audioPath": "vocab-audio/00031.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:57:36.289Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "μέ",
+      "filename": "00032.mp3",
+      "audioPath": "vocab-audio/00032.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:57:37.656Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Καλησπέρα",
+      "filename": "00033.mp3",
+      "audioPath": "vocab-audio/00033.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:57:44.378Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "σπέ",
+      "filename": "00034.mp3",
+      "audioPath": "vocab-audio/00034.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-27T17:02:47.712Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Τι κάνεις;",
+      "filename": "00035.mp3",
+      "audioPath": "vocab-audio/00035.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:57:52.992Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Τι",
+      "filename": "00036.mp3",
+      "audioPath": "vocab-audio/00036.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:57:54.526Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "κά",
+      "filename": "00037.mp3",
+      "audioPath": "vocab-audio/00037.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:57:56.318Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "νεις",
+      "filename": "00038.mp3",
+      "audioPath": "vocab-audio/00038.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:57:57.563Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Καλά",
+      "filename": "00039.mp3",
+      "audioPath": "vocab-audio/00039.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:03.414Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Έτσι κι έτσι",
+      "filename": "00040.mp3",
+      "audioPath": "vocab-audio/00040.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:08.149Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Έ",
+      "filename": "00041.mp3",
+      "audioPath": "vocab-audio/00041.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:09.692Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "τσι",
+      "filename": "00042.mp3",
+      "audioPath": "vocab-audio/00042.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:11.210Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "κι",
+      "filename": "00043.mp3",
+      "audioPath": "vocab-audio/00043.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:12.993Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Είμαι κουρασμένος",
+      "filename": "00044.mp3",
+      "audioPath": "vocab-audio/00044.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:18.121Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Εί",
+      "filename": "00045.mp3",
+      "audioPath": "vocab-audio/00045.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:19.923Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "μαι",
+      "filename": "00046.mp3",
+      "audioPath": "vocab-audio/00046.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:21.859Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "κου",
+      "filename": "00047.mp3",
+      "audioPath": "vocab-audio/00047.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:23.244Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "σμέ",
+      "filename": "00048.mp3",
+      "audioPath": "vocab-audio/00048.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:25.184Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "νος",
+      "filename": "00049.mp3",
+      "audioPath": "vocab-audio/00049.mp3",
+      "voice": "alloy",
+      "generatedAt": "2025-12-26T17:58:26.942Z",
       "source": "lesson-generated"
     }
   ]

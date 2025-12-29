@@ -6,6 +6,8 @@ import { ManifestUpdater } from './manifest-updater.js';
 import { VocabScanner } from './vocab-scanner.js';
 import { VocabGenerator } from './vocab-generator.js';
 import { VocabManager } from './vocab-manager.js';
+import { VocabDoctor, RepairResult } from './vocab-repair.js';
+import { LessonReconstructor } from './lesson-reconstructor.js';
 import { 
   getTodoLessons, 
   getAllLessons, 
@@ -192,7 +194,82 @@ async function main() {
   console.log('\n' + '='.repeat(60));
   console.log('✅ Batch generation complete!');
   console.log('='.repeat(60) + '\n');
-  
+
+  // ========================================
+  // PHASE 3: VOCABULARY REPAIR
+  // ========================================
+  console.log('\n' + '='.repeat(60));
+  console.log('🩺 PHASE 3: VOCABULARY REPAIR');
+  console.log('='.repeat(60) + '\n');
+
+  const doctor = new VocabDoctor();
+  const repairResults = new Map<string, RepairResult>();
+
+  // Get unique language/level combinations from processed lessons
+  const processedLangLevels = new Set<string>();
+  for (const [langLevel] of lessonsByLangLevel) {
+    processedLangLevels.add(langLevel);
+  }
+
+  // Also check all vocab files that were processed
+  for (const vocabFile of vocabFiles) {
+    processedLangLevels.add(`${vocabFile.languageId}/${vocabFile.levelId}`);
+  }
+
+  if (processedLangLevels.size > 0) {
+    console.log(`🔍 Checking ${processedLangLevels.size} language/level for vocab holes...\n`);
+
+    for (const langLevel of processedLangLevels) {
+      const [languageId, levelId] = langLevel.split('/');
+      
+      console.log(`\n📖 Checking ${languageId}/${levelId}...`);
+      const result = await doctor.repairVocabLibrary(languageId, levelId);
+      repairResults.set(langLevel, result);
+
+      if (result.holesRepaired > 0) {
+        console.log(`   ✅ Repaired ${result.holesRepaired} hole(s)`);
+      } else if (result.holesFound > 0) {
+        console.log(`   ⚠️  Found ${result.holesFound} hole(s) but failed to repair`);
+      } else {
+        console.log(`   ✨ No holes found, vocab library is healthy`);
+      }
+    }
+
+    console.log('\n' + '='.repeat(60));
+    console.log('✅ Vocab repair complete!');
+    console.log('='.repeat(60) + '\n');
+  } else {
+    console.log('ℹ️  No vocab libraries to check (no lessons or vocab files processed).\n');
+  }
+
+  // ========================================
+  // PHASE 4: LESSON RECONSTRUCTION
+  // ========================================
+  console.log('\n' + '='.repeat(60));
+  console.log('🔧 PHASE 4: LESSON RECONSTRUCTION');
+  console.log('='.repeat(60) + '\n');
+
+  const reconstructor = new LessonReconstructor();
+  let anyLessonsReconstructed = false;
+
+  for (const [langLevel, repairResult] of repairResults) {
+    if (repairResult.holesRepaired > 0) {
+      const [languageId, levelId] = langLevel.split('/');
+      console.log(`\n🔍 Checking ${languageId}/${levelId} for lessons needing reconstruction...\n`);
+      
+      try {
+        await reconstructor.reconstructLessons(repairResult, languageId, levelId);
+        anyLessonsReconstructed = true;
+      } catch (error) {
+        console.error(`❌ Reconstruction failed for ${langLevel}:`, error);
+      }
+    }
+  }
+
+  if (!anyLessonsReconstructed && repairResults.size > 0) {
+    console.log('✨ No lessons needed reconstruction.\n');
+  }
+
   // Show final summary
   const updatedLessons = getAllLessons();
   printLessonsSummary(updatedLessons);

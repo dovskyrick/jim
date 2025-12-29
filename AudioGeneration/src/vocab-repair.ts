@@ -14,15 +14,20 @@ import ffmpegStatic from 'ffmpeg-static';
  * Detects and repairs silent or corrupted audio files in the vocab library
  */
 
-interface RepairResult {
+export interface RepairResult {
   totalFiles: number;
   holesFound: number;
   holesRepaired: number;
   holesFailed: number;
   errors: Array<{ filename: string; text: string; error: string }>;
+  repairedFiles: Array<{
+    filename: string;
+    text: string;
+    audioPath: string;
+  }>;
 }
 
-class VocabDoctor {
+export class VocabDoctor {
   private ttsService: OpenAITTSService;
   private tempDir: string;
   
@@ -171,6 +176,7 @@ class VocabDoctor {
       holesRepaired: 0,
       holesFailed: 0,
       errors: [],
+      repairedFiles: [],
     };
 
     // Load vocab manifest
@@ -212,6 +218,12 @@ class VocabDoctor {
           result.holesRepaired++;
           // Update timestamp in manifest
           entry.generatedAt = new Date().toISOString();
+          // Track repaired file for lesson reconstruction
+          result.repairedFiles.push({
+            filename: entry.filename,
+            text: entry.text,
+            audioPath: audioPath,
+          });
         } else {
           result.holesFailed++;
           result.errors.push({

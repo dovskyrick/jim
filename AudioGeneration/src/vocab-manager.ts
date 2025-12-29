@@ -98,6 +98,20 @@ export class VocabManager {
   }
 
   /**
+   * Get the filename (e.g., "00001.mp3") for a word/phrase
+   */
+  getFilename(text: string): string | null {
+    if (!this.manifest) return null;
+
+    const normalizedText = this.normalizeText(text);
+    const entry = this.manifest.entries.find(e => 
+      this.normalizeText(e.text) === normalizedText
+    );
+
+    return entry ? entry.filename : null;
+  }
+
+  /**
    * Get vocab manifest entry for a word/phrase
    */
   getEntry(text: string): VocabManifestEntry | null {
