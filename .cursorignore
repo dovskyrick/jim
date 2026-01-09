@@ -1,0 +1,82 @@
+# Dependencies
+**/node_modules/
+
+# Build outputs
+**/lib/
+**/dist/
+**/build/
+**/web-build/
+*.js
+*.js.map
+*.tsbuildinfo
+
+# Audio files (large binary files)
+**/*.mp3
+**/*.wav
+**/*.m4a
+**/*.aac
+
+# Package lock files (not needed for context)
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+
+# Firebase credentials and cache
+**/firebase-service-account.json
+**/.firebase/
+
+# Output and temp directories
+**/output/
+**/temp/
+**/vocab-temp/
+**/lessons-audio/
+
+# Logs
+*.log
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# Environment variables
+**/.env
+**/.env.local
+**/.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+Icon?
+
+# IDE files
+**/.vscode/
+**/.idea/
+*.swp
+*.swo
+
+# Expo
+**/.expo/
+**/expo-env.d.ts
+
+# Native build folders
+**/ios/
+**/android/
+**/.kotlin/
+
+# Google Drive sync files
+*.tmp
+~$*
+.~lock.*
+
+# Generated native files
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# Metro bundler
+**/.metro-health-check*
+
