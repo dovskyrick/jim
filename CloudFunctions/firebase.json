@@ -16,7 +16,7 @@
     }
   ],
   "storage": {
-    "rules": "../AudioGeneration/storage.rules"
+    "rules": "storage.rules"
   }
 }
 

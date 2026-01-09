@@ -8,6 +8,7 @@ import { VocabGenerator } from './vocab-generator.js';
 import { VocabManager } from './vocab-manager.js';
 import { VocabDoctor, RepairResult } from './vocab-repair.js';
 import { LessonReconstructor } from './lesson-reconstructor.js';
+import { CostTracker } from './cost-tracker.js';
 import { 
   getTodoLessons, 
   getAllLessons, 
@@ -28,6 +29,32 @@ async function main() {
   // Validate configuration
   validateConfig();
 
+  // Initialize cost tracker
+  const costTracker = new CostTracker();
+  
+  // Check for budget limit from command line or environment
+  // Support both --budget=10 and --budget 10 formats
+  let budgetArg = process.argv.find(arg => arg.startsWith('--budget='));
+  if (!budgetArg) {
+    const budgetIndex = process.argv.indexOf('--budget');
+    if (budgetIndex !== -1 && budgetIndex + 1 < process.argv.length) {
+      budgetArg = `--budget=${process.argv[budgetIndex + 1]}`;
+    }
+  }
+  const budgetEnv = process.env.BUDGET_LIMIT_EUR;
+  const budgetLimit = budgetArg 
+    ? parseFloat(budgetArg.split('=')[1])
+    : budgetEnv 
+    ? parseFloat(budgetEnv)
+    : 0;
+
+  if (budgetLimit > 0) {
+    costTracker.setBudgetLimit(budgetLimit);
+    console.log(`💰 Budget limit: €${budgetLimit.toFixed(2)}\n`);
+  } else {
+    console.log('💰 No budget limit set (unlimited)\n');
+  }
+
   // ========================================
   // PHASE 1: VOCABULARY GENERATION
   // ========================================
@@ -35,7 +62,7 @@ async function main() {
   console.log('='.repeat(60) + '\n');
 
   const vocabScanner = new VocabScanner();
-  const vocabGenerator = new VocabGenerator();
+  const vocabGenerator = new VocabGenerator(costTracker);
 
   // Scan for vocab files
   console.log('🔍 Scanning for vocabulary files...\n');
@@ -147,8 +174,30 @@ async function main() {
     const vocabManager = new VocabManager();
     await vocabManager.loadManifest(languageId, levelId);
     
-    // Create lesson generator with vocab manager
-    const generator = new LessonGenerator(vocabManager);
+    // Create lesson generator with vocab manager and cost tracker
+    const generator = new LessonGenerator(vocabManager, costTracker);
+
+    // Estimate costs for all lessons in this group before starting
+    if (budgetLimit > 0) {
+      console.log(`\n💰 Estimating costs for ${lessons.length} lesson(s)...`);
+      let totalEstimatedCost = 0;
+      for (const lesson of lessons) {
+        const trimmedContent = lesson.parsedContent.content.trim();
+        if (trimmedContent && trimmedContent.length > 0) {
+          const estimatedCost = costTracker.estimateCost(trimmedContent);
+          totalEstimatedCost += estimatedCost;
+          console.log(`   ${lesson.lessonId}: ~€${estimatedCost.toFixed(4)}`);
+        }
+      }
+      console.log(`   Total estimated: €${totalEstimatedCost.toFixed(4)}`);
+      const remaining = costTracker.getRemainingBudget();
+      if (totalEstimatedCost > remaining) {
+        console.log(`\n⚠️  WARNING: Estimated cost (€${totalEstimatedCost.toFixed(4)}) exceeds remaining budget (€${remaining.toFixed(2)})`);
+        console.log(`   Some lessons may not complete. Continue? (processing will stop when budget is reached)\n`);
+      } else {
+        console.log(`   Remaining budget after: €${(remaining - totalEstimatedCost).toFixed(2)}\n`);
+      }
+    }
 
     // Process each lesson in this group
     for (let i = 0; i < lessons.length; i++) {
@@ -176,8 +225,16 @@ async function main() {
         console.log(`✅ Success! Audio available at: ${result.storagePath}`);
         
       } catch (error) {
-        console.error(`❌ Failed to generate lesson:`, error);
-        console.log('   Skipping to next lesson...');
+        if (error instanceof Error && error.message.includes('Budget limit exceeded')) {
+          console.error(`\n❌ ${error.message}`);
+          console.log('\n💰 Budget limit reached. Stopping lesson generation.');
+          console.log('   Remaining lessons will be processed in the next run.\n');
+          costTracker.printSummary();
+          break; // Stop processing this language/level group
+        } else {
+          console.error(`❌ Failed to generate lesson:`, error);
+          console.log('   Skipping to next lesson...');
+        }
       }
 
       // Small delay between API calls
@@ -193,7 +250,10 @@ async function main() {
 
   console.log('\n' + '='.repeat(60));
   console.log('✅ Batch generation complete!');
-  console.log('='.repeat(60) + '\n');
+  console.log('='.repeat(60));
+  
+  // Print cost summary
+  costTracker.printSummary();
 
   // ========================================
   // PHASE 3: VOCABULARY REPAIR

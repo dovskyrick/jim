@@ -1,0 +1,594 @@
+{
+  "totalSpent": 0.03963586956521739,
+  "budgetLimit": 10,
+  "currency": "EUR",
+  "entries": [
+    {
+      "text": "Greek 1 — Lesson 4\r\n\r\nDo you remember how to say \"good morning\"?",
+      "characterCount": 64,
+      "cost": 0.0010434782608695651,
+      "timestamp": "2026-01-09T15:50:06.855Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Say it again.",
+      "characterCount": 13,
+      "cost": 0.00021195652173913043,
+      "timestamp": "2026-01-09T15:50:08.459Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"how are you?\"",
+      "characterCount": 41,
+      "cost": 0.0006684782608695652,
+      "timestamp": "2026-01-09T15:50:10.183Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now listen and answer.\r\nHow are you?",
+      "characterCount": 36,
+      "cost": 0.0005869565217391303,
+      "timestamp": "2026-01-09T15:50:12.765Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"one\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 81,
+      "cost": 0.0013206521739130433,
+      "timestamp": "2026-01-09T15:50:14.529Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Ένα...\"",
+      "characterCount": 8,
+      "cost": 0.00013043478260869564,
+      "timestamp": "2026-01-09T15:50:16.657Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Repeat it again.",
+      "characterCount": 16,
+      "cost": 0.0002608695652173913,
+      "timestamp": "2026-01-09T15:50:18.150Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"two\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 81,
+      "cost": 0.0013206521739130433,
+      "timestamp": "2026-01-09T15:50:20.167Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Δύο...\"",
+      "characterCount": 8,
+      "cost": 0.00013043478260869564,
+      "timestamp": "2026-01-09T15:50:21.619Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"three\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 83,
+      "cost": 0.0013532608695652174,
+      "timestamp": "2026-01-09T15:50:23.848Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Τρία...\"",
+      "characterCount": 9,
+      "cost": 0.00014673913043478258,
+      "timestamp": "2026-01-09T15:50:25.376Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now syllable by syllable.",
+      "characterCount": 25,
+      "cost": 0.0004076086956521739,
+      "timestamp": "2026-01-09T15:50:27.513Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Τρι...\"",
+      "characterCount": 8,
+      "cost": 0.00013043478260869564,
+      "timestamp": "2026-01-09T15:50:28.860Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"α...\"",
+      "characterCount": 6,
+      "cost": 0.00009782608695652173,
+      "timestamp": "2026-01-09T15:50:30.438Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Repeat the whole word again.",
+      "characterCount": 28,
+      "cost": 0.0004565217391304348,
+      "timestamp": "2026-01-09T15:50:31.997Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"four\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 82,
+      "cost": 0.0013369565217391305,
+      "timestamp": "2026-01-09T15:50:34.693Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Τέσσερα...\"",
+      "characterCount": 12,
+      "cost": 0.00019565217391304346,
+      "timestamp": "2026-01-09T15:50:35.929Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Τέ...\"",
+      "characterCount": 7,
+      "cost": 0.0001141304347826087,
+      "timestamp": "2026-01-09T15:50:37.295Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"σσε...\"",
+      "characterCount": 8,
+      "cost": 0.00013043478260869564,
+      "timestamp": "2026-01-09T15:50:39.334Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"five\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 82,
+      "cost": 0.0013369565217391305,
+      "timestamp": "2026-01-09T15:50:41.846Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Πέντε...\"",
+      "characterCount": 10,
+      "cost": 0.00016304347826086955,
+      "timestamp": "2026-01-09T15:50:43.084Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Πέν...\"",
+      "characterCount": 8,
+      "cost": 0.00013043478260869564,
+      "timestamp": "2026-01-09T15:50:44.446Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"τε...\"",
+      "characterCount": 7,
+      "cost": 0.0001141304347826087,
+      "timestamp": "2026-01-09T15:50:46.029Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"thank you\"?",
+      "characterCount": 39,
+      "cost": 0.0006358695652173913,
+      "timestamp": "2026-01-09T15:50:47.537Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"excuse me\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 87,
+      "cost": 0.001418478260869565,
+      "timestamp": "2026-01-09T15:50:49.748Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Συγγνώμη...\"",
+      "characterCount": 13,
+      "cost": 0.00021195652173913043,
+      "timestamp": "2026-01-09T15:50:51.733Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Συγ...\"",
+      "characterCount": 8,
+      "cost": 0.00013043478260869564,
+      "timestamp": "2026-01-09T15:50:53.656Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"γνώ...\"",
+      "characterCount": 8,
+      "cost": 0.00013043478260869564,
+      "timestamp": "2026-01-09T15:50:55.012Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"μη...\"",
+      "characterCount": 7,
+      "cost": 0.0001141304347826087,
+      "timestamp": "2026-01-09T15:50:56.810Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"sorry\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 83,
+      "cost": 0.0013532608695652174,
+      "timestamp": "2026-01-09T15:50:58.826Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Λυπάμαι...\"",
+      "characterCount": 12,
+      "cost": 0.00019565217391304346,
+      "timestamp": "2026-01-09T15:51:00.590Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Λυ...\"",
+      "characterCount": 7,
+      "cost": 0.0001141304347826087,
+      "timestamp": "2026-01-09T15:51:02.366Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"πά...\"",
+      "characterCount": 7,
+      "cost": 0.0001141304347826087,
+      "timestamp": "2026-01-09T15:51:03.680Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"I don't understand\"?",
+      "characterCount": 48,
+      "cost": 0.0007826086956521738,
+      "timestamp": "2026-01-09T15:51:05.159Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"I understand\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 90,
+      "cost": 0.0014673913043478258,
+      "timestamp": "2026-01-09T15:51:07.424Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Καταλαβαίνω...\"",
+      "characterCount": 16,
+      "cost": 0.0002608695652173913,
+      "timestamp": "2026-01-09T15:51:09.402Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"I don't know\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 90,
+      "cost": 0.0014673913043478258,
+      "timestamp": "2026-01-09T15:51:11.580Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Δεν ξέρω...\"",
+      "characterCount": 13,
+      "cost": 0.00021195652173913043,
+      "timestamp": "2026-01-09T15:51:13.039Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"ξέ...\"",
+      "characterCount": 7,
+      "cost": 0.0001141304347826087,
+      "timestamp": "2026-01-09T15:51:14.262Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"ρω...\"",
+      "characterCount": 7,
+      "cost": 0.0001141304347826087,
+      "timestamp": "2026-01-09T15:51:15.532Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Repeat the whole sentence again.",
+      "characterCount": 32,
+      "cost": 0.0005217391304347826,
+      "timestamp": "2026-01-09T15:51:16.956Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "You are going to learn how to say \"I know\" in Greek.\r\nPlease repeat after the voice.",
+      "characterCount": 84,
+      "cost": 0.0013695652173913043,
+      "timestamp": "2026-01-09T15:51:18.843Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "\"Ξέρω...\"",
+      "characterCount": 9,
+      "cost": 0.00014673913043478258,
+      "timestamp": "2026-01-09T15:51:20.631Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"yes\"?",
+      "characterCount": 33,
+      "cost": 0.0005380434782608696,
+      "timestamp": "2026-01-09T15:51:22.142Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"no\"?",
+      "characterCount": 32,
+      "cost": 0.0005217391304347826,
+      "timestamp": "2026-01-09T15:51:23.695Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"one\"?",
+      "characterCount": 34,
+      "cost": 0.0005543478260869565,
+      "timestamp": "2026-01-09T15:51:25.526Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"three\"?",
+      "characterCount": 36,
+      "cost": 0.0005869565217391303,
+      "timestamp": "2026-01-09T15:51:27.225Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"five\"?",
+      "characterCount": 35,
+      "cost": 0.0005706521739130435,
+      "timestamp": "2026-01-09T15:51:28.816Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"excuse me\"?",
+      "characterCount": 40,
+      "cost": 0.0006521739130434782,
+      "timestamp": "2026-01-09T15:51:30.775Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"I understand\"?",
+      "characterCount": 43,
+      "cost": 0.0007010869565217391,
+      "timestamp": "2026-01-09T15:51:32.692Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"goodbye\"?",
+      "characterCount": 38,
+      "cost": 0.0006195652173913043,
+      "timestamp": "2026-01-09T15:51:34.711Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Let's practice counting from one to five.\r\nRepeat after the voice.",
+      "characterCount": 66,
+      "cost": 0.0010760869565217392,
+      "timestamp": "2026-01-09T15:51:36.683Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"I'm fine, and you?\"",
+      "characterCount": 47,
+      "cost": 0.0007663043478260869,
+      "timestamp": "2026-01-09T15:51:38.323Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"very well\"?",
+      "characterCount": 39,
+      "cost": 0.0006358695652173913,
+      "timestamp": "2026-01-09T15:51:40.161Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"two\"?",
+      "characterCount": 34,
+      "cost": 0.0005543478260869565,
+      "timestamp": "2026-01-09T15:51:41.691Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"four\"?",
+      "characterCount": 35,
+      "cost": 0.0005706521739130435,
+      "timestamp": "2026-01-09T15:51:43.590Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"sorry\"?",
+      "characterCount": 36,
+      "cost": 0.0005869565217391303,
+      "timestamp": "2026-01-09T15:51:44.901Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"I don't know\"?",
+      "characterCount": 43,
+      "cost": 0.0007010869565217391,
+      "timestamp": "2026-01-09T15:51:46.773Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"I know\"?",
+      "characterCount": 37,
+      "cost": 0.0006032608695652172,
+      "timestamp": "2026-01-09T15:51:48.996Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"good evening\"?",
+      "characterCount": 42,
+      "cost": 0.0006847826086956521,
+      "timestamp": "2026-01-09T15:51:51.437Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"hello\" politely?",
+      "characterCount": 45,
+      "cost": 0.0007336956521739129,
+      "timestamp": "2026-01-09T15:51:53.330Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"thank you\"?",
+      "characterCount": 40,
+      "cost": 0.0006521739130434782,
+      "timestamp": "2026-01-09T15:51:54.811Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"please\"?",
+      "characterCount": 36,
+      "cost": 0.0005869565217391303,
+      "timestamp": "2026-01-09T15:51:56.873Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "Do you remember how to say \"I'm tired\"?",
+      "characterCount": 39,
+      "cost": 0.0006358695652173913,
+      "timestamp": "2026-01-09T15:51:58.265Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    },
+    {
+      "text": "This is the end of Lesson 4.\r\nYou learned numbers from one to five, and new useful expressions.\r\nYou",
+      "characterCount": 211,
+      "cost": 0.0034402173913043476,
+      "timestamp": "2026-01-09T15:52:00.930Z",
+      "languageId": "greek",
+      "levelId": "level1",
+      "lessonId": "lesson4"
+    }
+  ],
+  "lastUpdated": "2026-01-09T15:52:00.930Z",
+  "sessionStart": "2026-01-09T15:49:59.122Z"
+}

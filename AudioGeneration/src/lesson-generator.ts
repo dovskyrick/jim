@@ -30,8 +30,8 @@ export class LessonGenerator {
   private outputDir: string;
   private vocabManager: VocabManager | null;
 
-  constructor(vocabManager?: VocabManager) {
-    this.ttsService = new OpenAITTSService();
+  constructor(vocabManager?: VocabManager, costTracker?: import('./cost-tracker.js').CostTracker) {
+    this.ttsService = new OpenAITTSService(costTracker);
     this.storageService = new FirebaseStorageService();
     this.concatenator = new AudioConcatenator();
     this.outputDir = resolve(config.storage.outputDir);
@@ -42,6 +42,19 @@ export class LessonGenerator {
       mkdirSync(this.outputDir, { recursive: true });
       console.log(`📁 Created output directory: ${this.outputDir}`);
     }
+  }
+
+  /**
+   * Initialize TTS service for a specific language
+   * This enables request tracking and auto-caching
+   */
+  initializeForLanguage(languageId: string, levelId?: string, lessonId?: string): void {
+    this.ttsService.initializeForLanguage(
+      languageId,
+      this.vocabManager || undefined,
+      levelId,
+      lessonId
+    );
   }
 
   /**
@@ -59,6 +72,14 @@ export class LessonGenerator {
     console.log(`   Language: ${content.languageName} (${content.languageId})`);
     console.log(`   Level: ${content.levelName} (${content.levelId})`);
     console.log('='.repeat(60) + '\n');
+
+    // Initialize TTS service for this language (enables request tracking)
+    this.ttsService.initializeForLanguage(
+      content.languageId,
+      this.vocabManager || undefined,
+      content.levelId,
+      content.lessonId
+    );
 
     // Step 1: Parse text into phrases and extract pause durations
     const { phrases, pauseDurations } = this.concatenator.parsePhrases(content.text);

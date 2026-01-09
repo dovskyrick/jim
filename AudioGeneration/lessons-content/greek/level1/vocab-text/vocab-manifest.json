@@ -2,8 +2,8 @@
   "version": "1.0",
   "language": "greek",
   "level": "level1",
-  "lastUpdated": "2025-12-29T17:04:18.289Z",
-  "nextFilenameNumber": 58,
+  "lastUpdated": "2026-01-09T15:52:26.418Z",
+  "nextFilenameNumber": 95,
   "entries": [
     {
       "text": "Γεια σου",
@@ -460,6 +460,302 @@
       "voice": "alloy",
       "generatedAt": "2025-12-29T17:04:10.935Z",
       "source": "lesson-generated"
+    },
+    {
+      "text": "Πολύ καλά",
+      "filename": "00058.mp3",
+      "audioPath": "vocab-audio/00058.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:03:44.145Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Πο",
+      "filename": "00059.mp3",
+      "audioPath": "vocab-audio/00059.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:02:49.223Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "λύ",
+      "filename": "00060.mp3",
+      "audioPath": "vocab-audio/00060.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:02:51.096Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "λά",
+      "filename": "00061.mp3",
+      "audioPath": "vocab-audio/00061.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:02:52.764Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Όχι καλά",
+      "filename": "00062.mp3",
+      "audioPath": "vocab-audio/00062.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:02:58.821Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Καλά, κι εσύ;",
+      "filename": "00063.mp3",
+      "audioPath": "vocab-audio/00063.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:03:04.887Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Δεν είμαι καλά",
+      "filename": "00064.mp3",
+      "audioPath": "vocab-audio/00064.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:03:09.958Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Είμαι πολύ κουρασμένος",
+      "filename": "00065.mp3",
+      "audioPath": "vocab-audio/00065.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:03:19.344Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Greek 1 — Lesson 4\r\n\r\nDo you remember how to say \"good morning\"?",
+      "filename": "00066.mp3",
+      "audioPath": "vocab-audio/00066.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:06.880Z",
+      "source": "auto-cached"
+    },
+    {
+      "text": "Ένα",
+      "filename": "00067.mp3",
+      "audioPath": "vocab-audio/00067.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:16.683Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Repeat it again.",
+      "filename": "00068.mp3",
+      "audioPath": "vocab-audio/00068.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:18.171Z",
+      "source": "auto-cached"
+    },
+    {
+      "text": "Δύο",
+      "filename": "00069.mp3",
+      "audioPath": "vocab-audio/00069.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:21.645Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Τρία",
+      "filename": "00070.mp3",
+      "audioPath": "vocab-audio/00070.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:25.403Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Now syllable by syllable.",
+      "filename": "00071.mp3",
+      "audioPath": "vocab-audio/00071.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:27.533Z",
+      "source": "auto-cached"
+    },
+    {
+      "text": "Τρι",
+      "filename": "00072.mp3",
+      "audioPath": "vocab-audio/00072.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:28.886Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "α",
+      "filename": "00073.mp3",
+      "audioPath": "vocab-audio/00073.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:52:23.550Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Repeat the whole word again.",
+      "filename": "00074.mp3",
+      "audioPath": "vocab-audio/00074.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:32.024Z",
+      "source": "auto-cached"
+    },
+    {
+      "text": "Τέσσερα",
+      "filename": "00075.mp3",
+      "audioPath": "vocab-audio/00075.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:35.952Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Τέ",
+      "filename": "00076.mp3",
+      "audioPath": "vocab-audio/00076.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:37.338Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "σσε",
+      "filename": "00077.mp3",
+      "audioPath": "vocab-audio/00077.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:39.359Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Πέντε",
+      "filename": "00078.mp3",
+      "audioPath": "vocab-audio/00078.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:43.123Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Πέν",
+      "filename": "00079.mp3",
+      "audioPath": "vocab-audio/00079.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:44.472Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "τε",
+      "filename": "00080.mp3",
+      "audioPath": "vocab-audio/00080.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:46.054Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Συγγνώμη",
+      "filename": "00081.mp3",
+      "audioPath": "vocab-audio/00081.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:51.757Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Συγ",
+      "filename": "00082.mp3",
+      "audioPath": "vocab-audio/00082.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:53.680Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "γνώ",
+      "filename": "00083.mp3",
+      "audioPath": "vocab-audio/00083.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:55.034Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "μη",
+      "filename": "00084.mp3",
+      "audioPath": "vocab-audio/00084.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:50:56.836Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Λυπάμαι",
+      "filename": "00085.mp3",
+      "audioPath": "vocab-audio/00085.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:00.613Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Λυ",
+      "filename": "00086.mp3",
+      "audioPath": "vocab-audio/00086.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:02.386Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "πά",
+      "filename": "00087.mp3",
+      "audioPath": "vocab-audio/00087.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:03.703Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Καταλαβαίνω",
+      "filename": "00088.mp3",
+      "audioPath": "vocab-audio/00088.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:09.419Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Δεν ξέρω",
+      "filename": "00089.mp3",
+      "audioPath": "vocab-audio/00089.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:13.055Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "ξέ",
+      "filename": "00090.mp3",
+      "audioPath": "vocab-audio/00090.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:14.286Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "ρω",
+      "filename": "00091.mp3",
+      "audioPath": "vocab-audio/00091.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:15.554Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Repeat the whole sentence again.",
+      "filename": "00092.mp3",
+      "audioPath": "vocab-audio/00092.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:16.979Z",
+      "source": "auto-cached"
+    },
+    {
+      "text": "Ξέρω",
+      "filename": "00093.mp3",
+      "audioPath": "vocab-audio/00093.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:20.657Z",
+      "source": "lesson-generated"
+    },
+    {
+      "text": "Now answer.\r\nHow do you say \"goodbye\"?",
+      "filename": "00094.mp3",
+      "audioPath": "vocab-audio/00094.mp3",
+      "voice": "alloy",
+      "generatedAt": "2026-01-09T15:51:34.735Z",
+      "source": "auto-cached"
     }
   ]
 }

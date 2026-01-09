@@ -1,0 +1,40 @@
+rules_version = '2';
+
+// Firebase Storage Security Rules
+// Phase 0: Lock down all public access
+// Files can only be accessed via signed URLs from Cloud Functions
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Manifest file - no direct public access
+    match /manifest.json {
+      allow read: if false;  // Only via signed URLs
+      allow write: if false; // Only via service account (admin SDK)
+    }
+    
+    // Audio lessons - no direct public access
+    match /audio-lessons/{filename} {
+      allow read: if false;  // Only via signed URLs
+      allow write: if false; // Only via service account (admin SDK)
+    }
+    
+    // Vocab audio - no direct public access
+    match /vocab-audio/{filename} {
+      allow read: if false;  // Only via signed URLs
+      allow write: if false; // Only via service account (admin SDK)
+    }
+    
+    // Metadata files - no direct public access
+    match /lesson-metadata/{filename} {
+      allow read: if false;  // Only via signed URLs
+      allow write: if false; // Only via service account (admin SDK)
+    }
+    
+    // Default deny everything else
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

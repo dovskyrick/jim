@@ -1,0 +1,68 @@
+{
+  "language": "greek",
+  "level": "level1",
+  "lessonsCovered": [1, 2, 3],
+  "lastUpdated": "2026-01-09",
+  "vocabulary": {
+    "greetings": {
+      "Γεια σου": "hello (informal)",
+      "Γεια σας": "hello (polite/plural)",
+      "Αντίο": "goodbye",
+      "Καλημέρα": "good morning",
+      "Καλησπέρα": "good evening"
+    },
+    "politeExpressions": {
+      "Παρακαλώ": "please / you're welcome",
+      "Ευχαριστώ": "thank you",
+      "Όχι, ευχαριστώ": "no, thank you"
+    },
+    "basicResponses": {
+      "Ναι": "yes",
+      "Όχι": "no",
+      "Καλά": "fine / well",
+      "Πολύ καλά": "very well",
+      "Όχι καλά": "not well",
+      "Έτσι κι έτσι": "so-so"
+    },
+    "introductions": {
+      "Με λένε": "my name is",
+      "Κι εσύ;": "and you?"
+    },
+    "questions": {
+      "Τι κάνεις;": "how are you? (informal)"
+    },
+    "feelings": {
+      "Είμαι κουρασμένος": "I'm tired",
+      "Είμαι πολύ κουρασμένος": "I'm very tired",
+      "Δεν είμαι καλά": "I'm not well",
+      "Καλά, κι εσύ;": "I'm fine, and you?"
+    },
+    "communication": {
+      "Δεν καταλαβαίνω": "I don't understand",
+      "Πιο αργά, παρακαλώ": "more slowly, please"
+    }
+  },
+  "lessonPatterns": {
+    "structure": [
+      "Review previous vocabulary with 'Do you remember...'",
+      "Introduce new vocabulary with 'You are going to learn...'",
+      "Repeat after voice (2-3 times)",
+      "Syllable breakdown for complex words",
+      "Practice questions: 'Now answer. How do you say...'",
+      "End with summary and encouragement"
+    ],
+    "pausePatterns": {
+      "afterQuestion": "3s",
+      "afterPhrase": "2s-3s",
+      "betweenSyllables": "0.8s-1s",
+      "beforeAnswer": "3s"
+    },
+    "teachingMethods": [
+      "Repetition (2-3 times)",
+      "Syllable-by-syllable breakdown for longer words",
+      "Contextual usage in sentences",
+      "Review questions throughout lesson"
+    ]
+  }
+}
+

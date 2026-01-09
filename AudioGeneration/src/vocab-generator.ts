@@ -5,6 +5,7 @@ import { VocabScanner } from './vocab-scanner.js';
 import { config } from './config.js';
 import { existsSync, mkdirSync, unlinkSync } from 'fs';
 import { join, resolve } from 'path';
+import { CostTracker } from './cost-tracker.js';
 
 /**
  * VocabGenerator
@@ -13,15 +14,25 @@ import { join, resolve } from 'path';
 export class VocabGenerator {
   private ttsService: OpenAITTSService;
   private tempDir: string;
+  private costTracker: CostTracker | null = null;
 
-  constructor() {
-    this.ttsService = new OpenAITTSService();
+  constructor(costTracker?: CostTracker) {
+    this.costTracker = costTracker || null;
+    this.ttsService = new OpenAITTSService(costTracker);
     this.tempDir = resolve('lessons-audio', 'vocab-temp');
     
     // Ensure temp directory exists
     if (!existsSync(this.tempDir)) {
       mkdirSync(this.tempDir, { recursive: true });
     }
+  }
+
+  /**
+   * Initialize TTS service for a specific language
+   * This enables request tracking and auto-caching
+   */
+  initializeForLanguage(languageId: string, vocabManager?: VocabManager): void {
+    this.ttsService.initializeForLanguage(languageId, vocabManager);
   }
 
   /**
@@ -86,6 +97,9 @@ export class VocabGenerator {
     console.log(`\n📚 Processing vocab file: ${fileInfo.vocabId}`);
     console.log(`   Language: ${fileInfo.languageId}, Level: ${fileInfo.levelId}`);
     console.log(`   Status: ${fileInfo.status}`);
+
+    // Initialize TTS service for this language (enables request tracking)
+    this.initializeForLanguage(fileInfo.languageId, vocabManager);
 
     // Parse vocab file
     const entries = vocabScanner.parseVocabFile(fileInfo.filePath);

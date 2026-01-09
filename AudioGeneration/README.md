@@ -180,13 +180,49 @@ tts: {
 }
 ```
 
-## 💰 Pricing
+## 💰 Pricing & Budget Management
 
 OpenAI TTS pricing (as of 2024):
 - **tts-1**: $0.015 per 1,000 characters (~$15 per 1M characters)
 - **tts-1-hd**: $0.030 per 1,000 characters (~$30 per 1M characters)
 
 Example: A 500-word lesson (≈3,000 characters) costs about $0.045 with tts-1.
+
+### Setting a Budget Limit
+
+You can set a budget limit to prevent overspending. The system will automatically stop when the limit is reached:
+
+**Option 1: Command Line Argument**
+```bash
+npm run generate -- --budget=10
+```
+
+**Option 2: Environment Variable**
+```bash
+# Windows PowerShell
+$env:BUDGET_LIMIT_EUR=10; npm run generate
+
+# Linux/Mac
+BUDGET_LIMIT_EUR=10 npm run generate
+```
+
+**Option 3: In .env file**
+```env
+BUDGET_LIMIT_EUR=10
+```
+
+The system will:
+- ✅ Track all TTS API costs automatically
+- ✅ Show cost estimates before processing
+- ✅ Stop gracefully when budget is reached
+- ✅ Save cost history to `cost-tracker.json`
+- ✅ Display a cost summary at the end
+
+**Cost Tracking:**
+- Costs are tracked in euros (EUR)
+- Each TTS request is logged with character count and cost
+- Budget warnings appear at 90% usage
+- Cost history persists across runs
 
 ## 📁 Project Structure
 

@@ -1,0 +1,462 @@
+Greek 1 — Lesson 4
+
+Do you remember how to say "good morning"?
+
+[pause 3s]
+"Καλημέρα..."
+[pause 3s]
+
+Say it again.
+
+[pause 3s]
+"Καλημέρα..."
+[pause 3s]
+
+Do you remember how to say "how are you?"
+
+[pause 3s]
+"Τι κάνεις;..."
+[pause 3s]
+
+Now listen and answer.
+How are you?
+
+[pause 3s]
+"Καλά..."
+[pause 3s]
+
+You are going to learn how to say "one" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Ένα..."
+[pause 2s]
+"Ένα..."
+[pause 3s]
+
+Repeat it again.
+
+[pause 3s]
+"Ένα..."
+[pause 3s]
+
+You are going to learn how to say "two" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Δύο..."
+[pause 2s]
+"Δύο..."
+[pause 3s]
+
+Repeat it again.
+
+[pause 3s]
+"Δύο..."
+[pause 3s]
+
+You are going to learn how to say "three" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Τρία..."
+[pause 2s]
+"Τρία..."
+[pause 3s]
+
+Now syllable by syllable.
+
+[pause 2s]
+"Τρι..."
+[pause 0.8s]
+"α..."
+[pause 3s]
+
+Repeat the whole word again.
+
+[pause 2s]
+"Τρία..."
+[pause 3s]
+
+You are going to learn how to say "four" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Τέσσερα..."
+[pause 2s]
+"Τέσσερα..."
+[pause 3s]
+
+Now syllable by syllable.
+
+[pause 2s]
+"Τέ..."
+[pause 0.8s]
+"σσε..."
+[pause 0.8s]
+"ρα..."
+[pause 3s]
+
+Repeat the whole word again.
+
+[pause 2s]
+"Τέσσερα..."
+[pause 3s]
+
+You are going to learn how to say "five" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Πέντε..."
+[pause 2s]
+"Πέντε..."
+[pause 3s]
+
+Now syllable by syllable.
+
+[pause 2s]
+"Πέν..."
+[pause 0.8s]
+"τε..."
+[pause 3s]
+
+Repeat the whole word again.
+
+[pause 2s]
+"Πέντε..."
+[pause 3s]
+
+Do you remember how to say "thank you"?
+
+[pause 3s]
+"Ευχαριστώ..."
+[pause 3s]
+
+You are going to learn how to say "excuse me" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Συγγνώμη..."
+[pause 2s]
+"Συγγνώμη..."
+[pause 3s]
+
+Now syllable by syllable.
+
+[pause 2s]
+"Συγ..."
+[pause 0.8s]
+"γνώ..."
+[pause 0.8s]
+"μη..."
+[pause 3s]
+
+Repeat the whole word again.
+
+[pause 2s]
+"Συγγνώμη..."
+[pause 3s]
+
+You are going to learn how to say "sorry" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Λυπάμαι..."
+[pause 2s]
+"Λυπάμαι..."
+[pause 3s]
+
+Now syllable by syllable.
+
+[pause 2s]
+"Λυ..."
+[pause 0.8s]
+"πά..."
+[pause 0.8s]
+"μαι..."
+[pause 3s]
+
+Repeat the whole word again.
+
+[pause 2s]
+"Λυπάμαι..."
+[pause 3s]
+
+Do you remember how to say "I don't understand"?
+
+[pause 3s]
+"Δεν καταλαβαίνω..."
+[pause 3s]
+
+You are going to learn how to say "I understand" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Καταλαβαίνω..."
+[pause 2s]
+"Καταλαβαίνω..."
+[pause 3s]
+
+Repeat it again.
+
+[pause 3s]
+"Καταλαβαίνω..."
+[pause 3s]
+
+You are going to learn how to say "I don't know" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Δεν ξέρω..."
+[pause 2s]
+"Δεν ξέρω..."
+[pause 3s]
+
+Now syllable by syllable.
+
+[pause 2s]
+"Δεν..."
+[pause 1s]
+"ξέ..."
+[pause 0.8s]
+"ρω..."
+[pause 3s]
+
+Repeat the whole sentence again.
+
+[pause 2s]
+"Δεν ξέρω..."
+[pause 3s]
+
+You are going to learn how to say "I know" in Greek.
+Please repeat after the voice.
+
+[pause 3s]
+"Ξέρω..."
+[pause 2s]
+"Ξέρω..."
+[pause 3s]
+
+Now syllable by syllable.
+
+[pause 2s]
+"Ξέ..."
+[pause 0.8s]
+"ρω..."
+[pause 3s]
+
+Repeat the whole word again.
+
+[pause 2s]
+"Ξέρω..."
+[pause 3s]
+
+Do you remember how to say "yes"?
+
+[pause 3s]
+"Ναι..."
+[pause 3s]
+
+Do you remember how to say "no"?
+
+[pause 3s]
+"Όχι..."
+[pause 3s]
+
+Now answer.
+How do you say "one"?
+
+[pause 3s]
+"Ένα..."
+[pause 3s]
+
+Now answer.
+How do you say "three"?
+
+[pause 3s]
+"Τρία..."
+[pause 3s]
+
+Now answer.
+How do you say "five"?
+
+[pause 3s]
+"Πέντε..."
+[pause 3s]
+
+Now answer.
+How do you say "excuse me"?
+
+[pause 3s]
+"Συγγνώμη..."
+[pause 3s]
+
+Now answer.
+How do you say "I understand"?
+
+[pause 3s]
+"Καταλαβαίνω..."
+[pause 3s]
+
+Now answer.
+How do you say "goodbye"?
+
+[pause 3s]
+"Αντίο..."
+[pause 3s]
+
+Let's practice counting from one to five.
+Repeat after the voice.
+
+[pause 3s]
+"Ένα..."
+[pause 1s]
+"Δύο..."
+[pause 1s]
+"Τρία..."
+[pause 1s]
+"Τέσσερα..."
+[pause 1s]
+"Πέντε..."
+[pause 3s]
+
+Say it again.
+
+[pause 3s]
+"Ένα..."
+[pause 1s]
+"Δύο..."
+[pause 1s]
+"Τρία..."
+[pause 1s]
+"Τέσσερα..."
+[pause 1s]
+"Πέντε..."
+[pause 3s]
+
+Do you remember how to say "I'm fine, and you?"
+
+[pause 3s]
+"Καλά, κι εσύ;..."
+[pause 3s]
+
+Do you remember how to say "very well"?
+
+[pause 3s]
+"Πολύ καλά..."
+[pause 3s]
+
+Now answer.
+How do you say "two"?
+
+[pause 3s]
+"Δύο..."
+[pause 3s]
+
+Now answer.
+How do you say "four"?
+
+[pause 3s]
+"Τέσσερα..."
+[pause 3s]
+
+Now answer.
+How do you say "sorry"?
+
+[pause 3s]
+"Λυπάμαι..."
+[pause 3s]
+
+Now answer.
+How do you say "I don't know"?
+
+[pause 3s]
+"Δεν ξέρω..."
+[pause 3s]
+
+Now answer.
+How do you say "I know"?
+
+[pause 3s]
+"Ξέρω..."
+[pause 3s]
+
+Do you remember how to say "good evening"?
+
+[pause 3s]
+"Καλησπέρα..."
+[pause 3s]
+
+Say it again.
+
+[pause 3s]
+"Καλησπέρα..."
+[pause 3s]
+
+Now answer.
+How do you say "hello" politely?
+
+[pause 3s]
+"Γεια σας..."
+[pause 3s]
+
+Now answer.
+How do you say "thank you"?
+
+[pause 3s]
+"Ευχαριστώ..."
+[pause 3s]
+
+Do you remember how to say "please"?
+
+[pause 3s]
+"Παρακαλώ..."
+[pause 3s]
+
+Say it again.
+
+[pause 3s]
+"Παρακαλώ..."
+[pause 3s]
+
+Now answer.
+How do you say "one"?
+
+[pause 3s]
+"Ένα..."
+[pause 3s]
+
+Now answer.
+How do you say "three"?
+
+[pause 3s]
+"Τρία..."
+[pause 3s]
+
+Now answer.
+How do you say "excuse me"?
+
+[pause 3s]
+"Συγγνώμη..."
+[pause 3s]
+
+Now answer.
+How do you say "I understand"?
+
+[pause 3s]
+"Καταλαβαίνω..."
+[pause 3s]
+
+Do you remember how to say "I'm tired"?
+
+[pause 3s]
+"Είμαι κουρασμένος..."
+[pause 3s]
+
+This is the end of Lesson 4.
+You learned numbers from one to five, and new useful expressions.
+You can now count and express understanding in Greek.
+Take a moment to practice, and continue when you are ready.
+
+[pause 3s]
+
