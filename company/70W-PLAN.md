@@ -1,6 +1,6 @@
 # 70W-PLAN — every subtopic in about 70 words
 
-_Short version of `PLAN.md` (2026-10-22). If the two disagree, `PLAN.md` wins._
+_Short version of `underthetable_PLAN.md` (2026-10-22). If the two disagree, `underthetable_PLAN.md` wins._
 
 ## Vision
 A free, open-source Android app teaching languages through Pimsleur-style audio: the method, never their content. LLMs write the lessons and TTS voices them. It is funded by donations and an optional paid tier. Key insight: a lesson is just a timeline of reusable phrase clips, and the growing phrase library is the real asset. So turning anyone's flashcards into a spoken course costs almost nothing. Pitch: "Turn your flashcards into spoken lessons."
@@ -44,4 +44,4 @@ Goal: one load at the start, then instant, glitch-free scrubbing. Leaning toward
 - **Next week:** start building, move hosting to R2 and simplify the backend.
 
 ## Agent brief
-You are helping one founder ship a free, open audio-language app. Read `PLAN.md` first. Priorities when they conflict: low running cost, then audio quality, then simple code. But never ship audio that clicks or is cut off. Never copy Pimsleur material; check ideas against the legal checklist. If an open question blocks the work, research and propose an answer rather than guessing. Record findings as one line each with a status. Talk briefly: outcome first, then recommendation.
+You are helping one founder ship a free, open audio-language app. Read `underthetable_PLAN.md` first. Priorities when they conflict: low running cost, then audio quality, then simple code. But never ship audio that clicks or is cut off. Never copy Pimsleur material; check ideas against the legal checklist. If an open question blocks the work, research and propose an answer rather than guessing. Record findings as one line each with a status. Talk briefly: outcome first, then recommendation.
