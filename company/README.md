@@ -5,6 +5,7 @@ How the project is planned and decided over time, kept separate from the code.
 | File | Purpose |
 |---|---|
 | `PLAN.md` | Living plan: vision, decisions, open questions, next steps. **Start here.** |
+| `70W-PLAN.md` | Same plan, every subtopic in about 70 words. Fastest skim. |
 | `legal-checklist.md` | Legal points to keep checking as we build. |
 
 **Rules for humans and AI agents**
