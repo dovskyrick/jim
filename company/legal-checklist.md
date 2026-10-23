@@ -3,6 +3,7 @@
 Check these as the project grows.
 
 - [ ] Write every lesson script ourselves. Never copy Pimsleur's scripts, word lists or lesson order.
+- [ ] Never commit or upload Pimsleur transcripts. Note patterns only, in your own words (clean room; see `subplan-lesson-text-generation.md`).
 - [ ] Never use "Pimsleur" in the app name, icon, store listing or ads. Describing the method in your own words is fine.
 - [ ] Tell users the voices are AI-generated (required by OpenAI's terms).
 - [ ] Re-read the terms of every LLM and TTS provider: commercial use and who owns the output.

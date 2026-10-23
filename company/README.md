@@ -8,6 +8,7 @@ How the project is planned and decided over time, kept separate from the code.
 | `70W-PLAN.md` | Same plan, every subtopic in about 70 words. Fastest skim. |
 | `subplan-audio-generation.md` | Cleaner, cheaper TTS pipeline: steps for you, tests, then building. |
 | `subplan-data-distribution.md` | Audio on Cloudflare R2, user data on Firebase: steps for you, tests, then building. |
+| `subplan-lesson-text-generation.md` | How lesson scripts get written: legal clean-room route, method prompt, checks. |
 | `legal-checklist.md` | Legal points to keep checking as we build. |
 
 **Rules for humans and AI agents**
