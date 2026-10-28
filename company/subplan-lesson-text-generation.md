@@ -2,6 +2,8 @@
 
 _2026-10-23 · Status: LOOSE · Each subtopic about 70 words. Not legal advice. Order: human steps → tests → implementation._
 
+**2026-10-28 update:** MVP spec is in `mvp-lesson-generator.md`. Method rules come from Pimsleur's 1967 paper and public descriptions only. The uploaded lesson transcripts were not used and are not stored in the repo.
+
 ## Goal
 Generate lesson scripts for any language from one well-written prompt. The scripts must teach as effectively as the audio method we admire while sharing none of its protected expression. Each output is a script in our existing format (`[pause]` markers, quoted target phrases) that the audio pipeline can voice directly. Success means a Greek Level 1 course that a native speaker and you both judge natural, well-paced and clearly ours.
 

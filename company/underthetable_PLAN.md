@@ -1,6 +1,6 @@
 # PLAN — Jim (open audio language lessons)
 
-_Last updated: 2026-10-23 · Stage: loose planning. Development starts within ~1 week._
+_Last updated: 2026-10-28 · Stage: loose planning. Development starts within ~1 week._
 
 ## Vision
 A free, open-source Android app that teaches languages through Pimsleur-*style* audio lessons (the method, never their content). Lessons are written by LLMs and voiced by text-to-speech (TTS). Free for everyone, funded by donations and an optional paid tier.
@@ -42,6 +42,8 @@ Options:
 - Custom lessons: build them on the server on demand (option A), so there is still only one player code path.
 
 ## Next steps
+**2026-10-28:** next build is the lesson text generator MVP (`mvp-lesson-generator.md`), waiting for the go. Back office phases are in `roadmap-back-office.md`.
+
 **2026-10-23 priority:** the audio pipeline and data/distribution come first; the player is clunky but good enough, so it waits. See `subplan-audio-generation.md` and `subplan-data-distribution.md`.
 
 - [ ] **Tomorrow (research):** Q1 experiments on 20 Greek phrases (carrier sentence vs bare word; check with Whisper). Compare TTS prices and quality (`tts-1`, `gpt-4o-mini-tts`, Google, Kokoro). Test seeking in the RN player.
