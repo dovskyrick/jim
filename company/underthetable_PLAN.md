@@ -42,7 +42,7 @@ Options:
 - Custom lessons: build them on the server on demand (option A), so there is still only one player code path.
 
 ## Next steps
-**2026-10-28:** next build is the lesson text generator MVP (`mvp-lesson-generator.md`), waiting for the go. Back office phases are in `roadmap-back-office.md`.
+**2026-10-28:** lesson generator groundwork is built (`AudioGeneration/curriculum/`). Next: a Haiku session follows `curriculum/RUNBOOK.md` to plan and write Greek Module 1. Back office phases are in `roadmap-back-office.md`.
 
 **2026-10-23 priority:** the audio pipeline and data/distribution come first; the player is clunky but good enough, so it waits. See `subplan-audio-generation.md` and `subplan-data-distribution.md`.
 

@@ -1,6 +1,8 @@
 # MVP — Lesson text generator
 
-_2026-10-28 · Status: PROPOSED, waiting for the founder's go · About 70 words per subtopic._
+_2026-10-28 · Status: DECIDED, groundwork built · About 70 words per subtopic._
+
+**Route chosen:** the session model (Haiku 5.5) acts as planner and writer by following `AudioGeneration/curriculum/RUNBOOK.md`. The code (scheduler, checker, renderer) is in `AudioGeneration/src/curriculum/`. An API-based writer can replace the session model later without changing the data.
 
 ## MVP in one sentence
 A command that takes a language, a module number and a creativity setting, and produces: a frozen curriculum of about 300 items, 30 lesson scripts of about 30 minutes each in the format the audio pipeline already reads, and a vocabulary record saying which lesson introduces and revisits each item. First target: Greek, Module 1, fully original. Each script carries a review status, so a human approves it before audio is generated.

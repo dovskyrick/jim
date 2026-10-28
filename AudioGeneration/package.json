@@ -13,7 +13,9 @@
     "test": "tsx src/test.ts",
     "status": "tsx src/status.ts",
     "update-manifest": "tsx src/update-manifest.ts",
-    "repair-vocab": "tsx src/vocab-repair.ts"
+    "repair-vocab": "tsx src/vocab-repair.ts",
+    "curriculum": "tsx src/curriculum/cli.ts",
+    "test:curriculum": "tsx --test src/curriculum/curriculum.test.ts"
   },
   "keywords": [
     "tts",
